@@ -1,4 +1,5 @@
 import { signIn } from '@/server/auth';
+
 import { GoogleIcon } from '@/components/GoogleIcon';
 
 export default function LoginPage() {

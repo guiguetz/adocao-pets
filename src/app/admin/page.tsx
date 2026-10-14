@@ -1,11 +1,26 @@
 import { auth, signOut } from '@/server/auth';
 
+function SignOutButton() {
+  return (
+    <form
+      action={async () => {
+        'use server';
+        await signOut({ redirectTo: '/' });
+      }}
+    >
+      <button
+        type="submit"
+        className="rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500"
+      >
+        Sair
+      </button>
+    </form>
+  );
+}
+
 export default async function AdminPage() {
   const session = await auth();
-
-  if (!session?.user) {
-    return null;
-  }
+  if (!session?.user) return null;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -14,23 +29,10 @@ export default async function AdminPage() {
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
           <div className="flex items-center gap-4">
             <span className="text-sm text-gray-600">{session.user.name}</span>
-            <form
-              action={async () => {
-                'use server';
-                await signOut({ redirectTo: '/' });
-              }}
-            >
-              <button
-                type="submit"
-                className="rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500"
-              >
-                Sair
-              </button>
-            </form>
+            <SignOutButton />
           </div>
         </div>
       </header>
-
       <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <div className="rounded-lg bg-white p-6 shadow">
           <h2 className="text-lg font-medium text-gray-900">Bem-vindo, {session.user.name}!</h2>
