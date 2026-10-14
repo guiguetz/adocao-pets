@@ -104,7 +104,7 @@ O Archon está configurado para usar Pi como provider.
 # Editar ~/.archon/config.yaml
 assistants:
   pi:
-    model: openai/gpt-4o  # ou outro modelo suportado
+    model: openrouter/anthropic/claude-sonnet-5.5  # ou outro modelo suportado
 ```
 
 ## Integração com Bigpowers

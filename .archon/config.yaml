@@ -8,8 +8,9 @@ defaultAssistant: pi
 # Assistant configuration
 assistants:
   pi:
-    # Model for this project
-    model: openrouter/anthropic/claude-sonnet-5.5
+    # Default model (medium tier = mimo v2.5 pro)
+    # small tasks use deepseek v4 flash 0731
+    model: openrouter/xiaomi/mimo-v2.5-pro
     
     # Extensions enabled (bigpowers, pi-graft, etc)
     enableExtensions: true
