@@ -1,71 +1,71 @@
 # Epic 03: Módulo de Pets
-id: "e03"
-title: "Módulo de Pets"
-status: "pending"
+id: 'e03'
+title: 'Módulo de Pets'
+status: 'pending'
 wsjf: 9
-created: "2025-01-27"
+created: '2025-01-27'
 
-goal: "Implementar CRUD de Pets com listagem pública e detalhes."
+goal: 'Implementar CRUD de Pets com listagem pública e detalhes.'
 
 stories:
-  - id: "e03s01"
-    title: "Repository de Pets"
-    status: "pending"
+  - id: 'e03s01'
+    title: 'Repository de Pets'
+    status: 'pending'
     points: 3
-    priority: "must-have"
+    priority: 'must-have'
     description: |
       Implementar PetRepository estendendo BaseRepository.
       Métodos: findByOrganization, findAvailable, search.
     acceptance_criteria:
-      - "Repository faz CRUD completo"
-      - "findAvailable filtra por status"
-      - "search faz full-text search"
+      - 'Repository faz CRUD completo'
+      - 'findAvailable filtra por status'
+      - 'search faz full-text search'
     verify:
-      - "pnpm test:unit -- PetRepository"
+      - 'pnpm test:unit -- PetRepository'
 
-  - id: "e03s02"
-    title: "API routes de Pets"
-    status: "pending"
+  - id: 'e03s02'
+    title: 'API routes de Pets'
+    status: 'pending'
     points: 3
-    priority: "must-have"
+    priority: 'must-have'
     description: |
       Criar API routes para Pets: GET (list), GET/:id, POST, PUT/:id, DELETE/:id.
       Filtros por species, breed, organization.
     acceptance_criteria:
-      - "POST /api/pets cria Pet"
-      - "GET /api/pets lista Pets com filtros"
-      - "Filtros funcionam corretamente"
+      - 'POST /api/pets cria Pet'
+      - 'GET /api/pets lista Pets com filtros'
+      - 'Filtros funcionam corretamente'
     verify:
-      - "Testes de API com fetch"
+      - 'Testes de API com fetch'
 
-  - id: "e03s03"
-    title: "Listagem pública de Pets"
-    status: "pending"
+  - id: 'e03s03'
+    title: 'Listagem pública de Pets'
+    status: 'pending'
     points: 5
-    priority: "must-have"
+    priority: 'must-have'
     description: |
       Página pública /pets com grid de cards.
       Filtros por espécie, raça, idade.
       Paginação.
     acceptance_criteria:
-      - "Grid de cards responsivo"
-      - "Filtros atualizam resultados"
-      - "Paginação funciona"
+      - 'Grid de cards responsivo'
+      - 'Filtros atualizam resultados'
+      - 'Paginação funciona'
     verify:
-      - "Teste E2E: navegar e filtrar"
+      - 'Teste E2E: navegar e filtrar'
 
-  - id: "e03s04"
-    title: "Detalhe do Pet"
-    status: "pending"
+  - id: 'e03s04'
+    title: 'Detalhe do Pet'
+    status: 'pending'
     points: 3
-    priority: "must-have"
+    priority: 'must-have'
     description: |
       Página /pets/[id] com detalhes do pet.
       Foto, descrição, informações da ONG.
       Botão "Quero adotar".
     acceptance_criteria:
-      - "Página mostra todos os dados"
-      - "Botão de adoção aparece"
-      - "Link para ONG funciona"
+      - 'Página mostra todos os dados'
+      - 'Botão de adoção aparece'
+      - 'Link para ONG funciona'
     verify:
-      - "Teste E2E: ver detalhes"
+      - 'Teste E2E: ver detalhes'

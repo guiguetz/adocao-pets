@@ -1,55 +1,55 @@
 # Epic 05: Dashboard da ONG
-id: "e05"
-title: "Dashboard da ONG"
-status: "pending"
+id: 'e05'
+title: 'Dashboard da ONG'
+status: 'pending'
 wsjf: 6
-created: "2025-01-27"
+created: '2025-01-27'
 
-goal: "Painel administrativo para ONGs gerenciarem pets e adoções."
+goal: 'Painel administrativo para ONGs gerenciarem pets e adoções.'
 
 stories:
-  - id: "e05s01"
-    title: "Layout do dashboard"
-    status: "pending"
+  - id: 'e05s01'
+    title: 'Layout do dashboard'
+    status: 'pending'
     points: 3
-    priority: "must-have"
+    priority: 'must-have'
     description: |
       Layout base do dashboard com sidebar e header.
       Navegação entre seções.
     acceptance_criteria:
-      - "Layout responsivo"
-      - "Sidebar com menu"
-      - "Header com info da ONG"
+      - 'Layout responsivo'
+      - 'Sidebar com menu'
+      - 'Header com info da ONG'
     verify:
-      - "Teste visual: layout renderiza"
+      - 'Teste visual: layout renderiza'
 
-  - id: "e05s02"
-    title: "Lista de adoções pendentes"
-    status: "pending"
+  - id: 'e05s02'
+    title: 'Lista de adoções pendentes'
+    status: 'pending'
     points: 5
-    priority: "must-have"
+    priority: 'must-have'
     description: |
       Tabela de adoções pendentes com dados do adotante.
       Ações: aprovar, rejeitar, ver detalhes.
     acceptance_criteria:
-      - "Tabela mostra adoções pendentes"
-      - "Dados do adotante visíveis"
-      - "Ações funcionam"
+      - 'Tabela mostra adoções pendentes'
+      - 'Dados do adotante visíveis'
+      - 'Ações funcionam'
     verify:
-      - "Teste E2E: ver lista"
+      - 'Teste E2E: ver lista'
 
-  - id: "e05s03"
-    title: "Aprovar/rejeitar adoções"
-    status: "pending"
+  - id: 'e05s03'
+    title: 'Aprovar/rejeitar adoções'
+    status: 'pending'
     points: 5
-    priority: "must-have"
+    priority: 'must-have'
     description: |
       Botões de aprovar/rejeitar com confirmação.
       Atualiza status da Adoption.
       Notifica adotante (futuro).
     acceptance_criteria:
-      - "Aprovar muda status para APPROVED"
-      - "Rejeitar muda status para REJECTED"
-      - "Confirmação antes de ação"
+      - 'Aprovar muda status para APPROVED'
+      - 'Rejeitar muda status para REJECTED'
+      - 'Confirmação antes de ação'
     verify:
-      - "Teste E2E: aprovar adoção"
+      - 'Teste E2E: aprovar adoção'

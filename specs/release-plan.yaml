@@ -1,122 +1,122 @@
 # Release Plan — Adoção de Pets
-version: "1.0"
-created: "2025-01-27"
+version: '1.0'
+created: '2025-01-27'
 
 releases:
-  - version: "v0.1.0"
-    name: "Foundation"
-    target_date: "2025-02-10"
-    goal: "Infraestrutura base e autenticação"
+  - version: 'v0.1.0'
+    name: 'Foundation'
+    target_date: '2025-02-10'
+    goal: 'Infraestrutura base e autenticação'
     epics:
-      - id: "e01"
-        title: "Setup e Infraestrutura"
+      - id: 'e01'
+        title: 'Setup e Infraestrutura'
         wsjf: 10
         stories:
-          - id: "e01s01"
-            title: "Configurar Prisma e migrations"
+          - id: 'e01s01'
+            title: 'Configurar Prisma e migrations'
             points: 3
-            priority: "must-have"
-          - id: "e01s02"
-            title: "Configurar Auth.js com Google OAuth"
+            priority: 'must-have'
+          - id: 'e01s02'
+            title: 'Configurar Auth.js com Google OAuth'
             points: 5
-            priority: "must-have"
-          - id: "e01s03"
-            title: "Middleware de autenticação"
+            priority: 'must-have'
+          - id: 'e01s03'
+            title: 'Middleware de autenticação'
             points: 3
-            priority: "must-have"
-          - id: "e01s04"
-            title: "Seed data para desenvolvimento"
+            priority: 'must-have'
+          - id: 'e01s04'
+            title: 'Seed data para desenvolvimento'
             points: 2
-            priority: "should-have"
+            priority: 'should-have'
 
-  - version: "v0.2.0"
-    name: "Core"
-    target_date: "2025-02-24"
-    goal: "CRUD de ONGs e Pets"
+  - version: 'v0.2.0'
+    name: 'Core'
+    target_date: '2025-02-24'
+    goal: 'CRUD de ONGs e Pets'
     epics:
-      - id: "e02"
-        title: "Módulo de ONGs"
+      - id: 'e02'
+        title: 'Módulo de ONGs'
         wsjf: 8
         stories:
-          - id: "e02s01"
-            title: "Repository de ONGs"
+          - id: 'e02s01'
+            title: 'Repository de ONGs'
             points: 3
-            priority: "must-have"
-          - id: "e02s02"
-            title: "API routes de ONGs"
+            priority: 'must-have'
+          - id: 'e02s02'
+            title: 'API routes de ONGs'
             points: 3
-            priority: "must-have"
-          - id: "e02s03"
-            title: "Página de cadastro de ONG"
+            priority: 'must-have'
+          - id: 'e02s03'
+            title: 'Página de cadastro de ONG'
             points: 5
-            priority: "must-have"
+            priority: 'must-have'
 
-      - id: "e03"
-        title: "Módulo de Pets"
+      - id: 'e03'
+        title: 'Módulo de Pets'
         wsjf: 9
         stories:
-          - id: "e03s01"
-            title: "Repository de Pets"
+          - id: 'e03s01'
+            title: 'Repository de Pets'
             points: 3
-            priority: "must-have"
-          - id: "e03s02"
-            title: "API routes de Pets"
+            priority: 'must-have'
+          - id: 'e03s02'
+            title: 'API routes de Pets'
             points: 3
-            priority: "must-have"
-          - id: "e03s03"
-            title: "Listagem pública de Pets"
+            priority: 'must-have'
+          - id: 'e03s03'
+            title: 'Listagem pública de Pets'
             points: 5
-            priority: "must-have"
-          - id: "e03s04"
-            title: "Detalhe do Pet"
+            priority: 'must-have'
+          - id: 'e03s04'
+            title: 'Detalhe do Pet'
             points: 3
-            priority: "must-have"
+            priority: 'must-have'
 
-  - version: "v0.3.0"
-    name: "Adoption"
-    target_date: "2025-03-10"
-    goal: "Processo de adoção funcional"
+  - version: 'v0.3.0'
+    name: 'Adoption'
+    target_date: '2025-03-10'
+    goal: 'Processo de adoção funcional'
     epics:
-      - id: "e04"
-        title: "Processo de Adoção"
+      - id: 'e04'
+        title: 'Processo de Adoção'
         wsjf: 7
         stories:
-          - id: "e04s01"
-            title: "Model e migration de Adoption"
+          - id: 'e04s01'
+            title: 'Model e migration de Adoption'
             points: 3
-            priority: "must-have"
-          - id: "e04s02"
-            title: "Formulário de adoção"
+            priority: 'must-have'
+          - id: 'e04s02'
+            title: 'Formulário de adoção'
             points: 5
-            priority: "must-have"
-          - id: "e04s03"
-            title: "Status tracking da adoção"
+            priority: 'must-have'
+          - id: 'e04s03'
+            title: 'Status tracking da adoção'
             points: 5
-            priority: "must-have"
+            priority: 'must-have'
 
-      - id: "e05"
-        title: "Dashboard da ONG"
+      - id: 'e05'
+        title: 'Dashboard da ONG'
         wsjf: 6
         stories:
-          - id: "e05s01"
-            title: "Layout do dashboard"
+          - id: 'e05s01'
+            title: 'Layout do dashboard'
             points: 3
-            priority: "must-have"
-          - id: "e05s02"
-            title: "Lista de adoções pendentes"
+            priority: 'must-have'
+          - id: 'e05s02'
+            title: 'Lista de adoções pendentes'
             points: 5
-            priority: "must-have"
-          - id: "e05s03"
-            title: "Aprovar/rejeitar adoções"
+            priority: 'must-have'
+          - id: 'e05s03'
+            title: 'Aprovar/rejeitar adoções'
             points: 5
-            priority: "must-have"
+            priority: 'must-have'
 
 bcp:
-  description: "Baseline Completion Plan — mínimo para MVP funcional"
+  description: 'Baseline Completion Plan — mínimo para MVP funcional'
   includes:
-    - "e01 (Setup)"
-    - "e02 (ONGs)"
-    - "e03 (Pets)"
+    - 'e01 (Setup)'
+    - 'e02 (ONGs)'
+    - 'e03 (Pets)'
   excludes:
-    - "e04 (Adoção) — v0.3.0"
-    - "e05 (Dashboard) — v0.3.0"
+    - 'e04 (Adoção) — v0.3.0'
+    - 'e05 (Dashboard) — v0.3.0'
