@@ -1,4 +1,4 @@
-import { auth, signOut } from "@/server/auth";
+import { auth, signOut } from '@/server/auth';
 
 export default async function AdminPage() {
   const session = await auth();
@@ -11,17 +11,13 @@ export default async function AdminPage() {
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-            Dashboard
-          </h1>
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
           <div className="flex items-center gap-4">
-            <span className="text-sm text-gray-600">
-              {session.user.name}
-            </span>
+            <span className="text-sm text-gray-600">{session.user.name}</span>
             <form
               action={async () => {
-                "use server";
-                await signOut({ redirectTo: "/" });
+                'use server';
+                await signOut({ redirectTo: '/' });
               }}
             >
               <button
@@ -37,12 +33,8 @@ export default async function AdminPage() {
 
       <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <div className="rounded-lg bg-white p-6 shadow">
-          <h2 className="text-lg font-medium text-gray-900">
-            Bem-vindo, {session.user.name}!
-          </h2>
-          <p className="mt-1 text-sm text-gray-500">
-            Este é o painel administrativo da sua ONG.
-          </p>
+          <h2 className="text-lg font-medium text-gray-900">Bem-vindo, {session.user.name}!</h2>
+          <p className="mt-1 text-sm text-gray-500">Este é o painel administrativo da sua ONG.</p>
         </div>
       </main>
     </div>
