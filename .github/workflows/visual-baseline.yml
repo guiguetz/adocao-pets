@@ -1,0 +1,32 @@
+name: Visual Baseline
+
+on:
+  workflow_dispatch:
+    inputs:
+      update:
+        description: 'Update visual snapshots'
+        required: true
+        type: boolean
+        default: false
+
+jobs:
+  visual:
+    name: Visual Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm test:visual --update-snapshots=${{ inputs.update }}
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: visual-test-results
+          path: test-results/
