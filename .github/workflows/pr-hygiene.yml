@@ -53,10 +53,5 @@ jobs:
             });
 
             if (pr.additions + pr.deletions > 400) {
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                labels: ['size/L'],
-              });
+              core.warning('PR is too large (>400 lines). Consider breaking it into smaller PRs.');
             }
