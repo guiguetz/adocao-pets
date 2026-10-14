@@ -5,12 +5,14 @@
 Read CONVENTIONS.md before any GitHub or git operation.
 
 <!-- BEGIN bigpowers:context-routing -->
+
 ## Context Routing
 
 Load subdirectory context by file glob — see project-specific routing table (seeded by `seed-conventions`).
 <!-- END bigpowers:context-routing -->
 
 <!-- BEGIN bigpowers:learned-preferences -->
+
 ## Learned User Preferences
 
 - (none yet — updated via `session-state`)
@@ -18,9 +20,11 @@ Load subdirectory context by file glob — see project-specific routing table (s
 ## Workspace Facts
 
 - (none yet — durable facts discovered across sessions)
+
 <!-- END bigpowers:learned-preferences -->
 
 <!-- BEGIN bigpowers:project -->
+
 ## Project
 
 Plataforma open-source de adoção, apadrinhamento e resgate animal.
@@ -28,14 +32,14 @@ Stack: TypeScript / Next.js 16 / React 19 / Prisma 5 / PostgreSQL / Node 22
 
 ## Commands
 
-| Action | Command |
-|--------|---------|
-| Run | `pnpm dev` |
-| Test | `pnpm test` |
-| Build | `pnpm build` |
-| Lint | `pnpm lint` |
-| Preflight | `pnpm verify` |
-| CI | `gh pr checks` (when a PR is open) |
+| Action    | Command                            |
+| --------- | ---------------------------------- |
+| Run       | `pnpm dev`                         |
+| Test      | `pnpm test`                        |
+| Build     | `pnpm build`                       |
+| Lint      | `pnpm lint`                        |
+| Preflight | `pnpm verify`                      |
+| CI        | `gh pr checks` (when a PR is open) |
 
 ## Test
 
@@ -85,6 +89,7 @@ Next.js App Router with feature-based modules. Prisma ORM for database access. R
 ## Defensive Code
 
 All 5 categories apply:
+
 - Rate limit
 - Retry
 - Circuit breaker
@@ -97,4 +102,5 @@ All 5 categories apply:
 2. **Prefer mature, maintained libraries.** DO NOT rewrite a capability a maintained library provides without a documented reason.
 3. **Copy validated patterns.** DO study how established products solve the same problem before inventing a new approach.
 4. **Keep the simplest working implementation.** DO write the least code that satisfies the stated requirement. NEVER add preventive abstraction or unused config layers.
+
 <!-- END bigpowers:project -->

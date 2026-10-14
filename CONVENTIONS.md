@@ -5,9 +5,11 @@
 All changes to this repository MUST follow the [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/) specification. Versioning MUST strictly adhere to [Semantic Versioning 2.0.0](https://semver.org/).
 
 ### Commit Message Format
+
 `<type>(<scope>): <description>` (Space after colon is MANDATORY)
 
 ### Types & Version Bumps
+
 - `feat`: Minor (x.Y.z) - New feature
 - `fix`: Patch (x.y.Z) - Bug fix
 - `perf`: Patch (x.y.Z) - Performance improvement
@@ -28,6 +30,7 @@ All changes to this repository MUST follow the [Conventional Commits 1.0.0](http
 
 **AGENTS MUST NEVER BYPASS THE BIGPOWERS WORKFLOW.**
 You are operating within the `bigpowers` spec-driven development methodology.
+
 - **No Direct Coding:** When a user issues a directive like "build feature X" or "go epic 10", you MUST NOT execute the request by writing code directly.
 - **Required Skills:** You MUST route all work through the appropriate bigpowers skills.
   - Start with `survey-context` if you lack context.
@@ -60,6 +63,7 @@ Discovered fixes ship in the **same PR** as the original work but in **separate 
 ## Specs Output Convention
 
 All planning output goes in `specs/`. Structure:
+
 - `specs/product/` — SCOPE_LATEST.yaml, VISION_LATEST.yaml, GLOSSARY_LATEST.yaml
 - `specs/epics/` — epic capsules (eNN-slug/)
 - `specs/tech-architecture/` — tech-stack.md, security, test, design plans
@@ -69,18 +73,22 @@ All planning output goes in `specs/`. Structure:
 ## Risk Tiers
 
 ### P0 — Critical (never violate)
+
 - **[always-green]**: Preflight and CI must be green before forward work.
 - **[no-direct-coding]**: Route feature work through bigpowers skills — no ad-hoc implementation without a plan in `specs/`.
 
 ### P1 — High (fix before merge)
+
 - **[conventional-commits]**: All commits follow Conventional Commits; semantic-release owns version bumps.
 - **[test-on-change]**: New functions and bug fixes include tests; regressions get regression tests.
 - **[branch-protection]**: No direct work on `main`/`master`; feature branches via `kickoff-branch`.
 
 ### P2 — Medium (address in same epic or next)
+
 - **[file-size-cap]**: Source files under 300 lines unless listed in § File-Size Exceptions.
 - **[handoff-signaling]**: Critical-path skills write `handoff.next_skill` to `state.yaml`.
 
 ### P3 — Low (best effort)
+
 - **[boy-scout]**: Leave touched files at least as clean as found.
 - **[terse-when-heavy]**: Switch to `terse-mode` when context exceeds ~20 turns.

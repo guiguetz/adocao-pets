@@ -9,21 +9,21 @@ nodes:
   - id: prepare
     prompt: |
       Você é um desenvolvedor sênior seguindo o ciclo TDD.
-      
+
       Tarefa: Leia a story em specs/epics/ correspondente a $ARGUMENTS.
-      
+
       Extraia:
       1. Título da story
       2. Escopo (o que está incluído)
       3. Critérios de aceite (checklist)
       4. Comando de verificação (verify:)
       5. Dependências
-      
+
       Crie um plano de implementação detalhado com:
       - Lista de arquivos a criar/modificar
       - Ordem de implementação
       - Testes a escrever
-      
+
       Output: Plano estruturado em markdown
 
   # 2. Implement - TDD loop
@@ -32,14 +32,14 @@ nodes:
     loop:
       prompt: |
         Você está implementando uma story usando TDD.
-        
+
         Plano: $prepare.output
-        
+
         Siga o ciclo:
         1. 🔴 RED: Escreva um teste que falhe
         2. 🟢 GREEN: Implemente código mínimo para passar
         3. 🔵 REFACTOR: Melhore o código sem quebrar testes
-        
+
         Regras:
         - Cada iteração deve ter UM teste e o código mínimo
         - Nunca pule o RED (teste deve falhar primeiro)
@@ -47,14 +47,14 @@ nodes:
         - Refatore apenas quando todos os testes estiverem verdes
         - Use nomes descritivos para testes
         - Tag: story: $ARGUMENTS em cada arquivo
-        
+
         Pare quando:
         - Todos os critérios de aceite estiverem atendidos
         - Todos os testes passarem
         - Não houver mais código a implementar
-        
+
         Output: "DONE" quando terminar
-      until: "DONE"
+      until: 'DONE'
       max_iterations: 20
       fresh_context: true
 
@@ -63,21 +63,21 @@ nodes:
     depends_on: [implement]
     bash: |
       echo "Running verification..."
-      
+
       # Type check
       pnpm typecheck || exit 1
-      
+
       # Unit tests
       pnpm test:unit || exit 1
-      
+
       # Lint
       pnpm lint || exit 1
-      
+
       # Verify command from story (if exists)
       if [ -f "specs/epics/$ARGUMENTS/verify.sh" ]; then
         bash specs/epics/$ARGUMENTS/verify.sh || exit 1
       fi
-      
+
       echo "✅ All verifications passed"
 
   # 4. Review - Self-review
@@ -85,18 +85,18 @@ nodes:
     depends_on: [verify]
     prompt: |
       Revise as mudanças feitas na story $ARGUMENTS.
-      
+
       Verifique:
       1. Todos os critérios de aceite foram atendidos?
       2. Os testes cobrem todos os cenários?
       3. O código segue as convenções do projeto?
       4. Há algum problema de segurança?
       5. A documentação está adequada?
-      
+
       Se encontrar problemas:
       - Corrija-os diretamente se forem simples
       - Descreva problemas complexos para o humano revisar
-      
+
       Output: Relatório de revisão
 
   # 5. Create PR
@@ -104,16 +104,16 @@ nodes:
     depends_on: [review]
     prompt: |
       Crie o Pull Request para a story $ARGUMENTS.
-      
+
       Use o template do projeto:
       - Título: Conventional Commits (ex: feat(auth): add login endpoint)
       - Corpo: Descreva as mudanças + Closes #<issue>
       - Labels: feature, bug, chore, etc + area (auth, pets, etc)
-      
+
       Passos:
       1. Verifique se todas as mudanças estão commitadas
       2. Faça push da branch
       3. Crie o PR com gh pr create
       4. Link para a issue correspondente
-      
+
       Output: URL do PR criado

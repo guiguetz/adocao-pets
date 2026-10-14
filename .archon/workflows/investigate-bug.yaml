@@ -9,15 +9,15 @@ nodes:
   - id: reproduce
     prompt: |
       Investigue o bug reportado.
-      
+
       Entrada: $ARGUMENTS
-      
+
       Passos:
       1. Leia a descrição do bug
       2. Entenda o comportamento esperado vs atual
       3. Identifique os passos para reproduzir
       4. Verifique se consegue reproduzir localmente
-      
+
       Output: Análise do bug com passos de reprodução
 
   # 2. Find root cause
@@ -25,17 +25,17 @@ nodes:
     depends_on: [reproduce]
     prompt: |
       Encontre a causa raiz do bug.
-      
+
       Use as ferramentas:
       - graft_find_code para buscar código relacionado
       - graft_trace_calls para entender fluxo
       - Ler arquivos relevantes
-      
+
       Analise:
       1. Onde o erro ocorre?
       2. Por que ocorre?
       3. Qual é a causa raiz?
-      
+
       Output: Causa raiz identificada
 
   # 3. Check impact
@@ -43,13 +43,13 @@ nodes:
     depends_on: [root-cause]
     prompt: |
       Analise o impacto do bug.
-      
+
       Considere:
       1. Quantos usuários são afetados?
       2. Qual a severidade? (critical/high/medium/low)
       3. Há workarounds disponíveis?
       4. O bug afeta dados ou segurança?
-      
+
       Output: Análise de impacto
 
   # 4. Plan the fix
@@ -57,18 +57,18 @@ nodes:
     depends_on: [impact]
     prompt: |
       Planeje a correção do bug.
-      
+
       Inclua:
       1. Mudanças necessárias
       2. Testes a adicionar
       3. Verificação de regressão
       4. Rollback plan se necessário
-      
+
       Considere:
       - A correção pode causar outros problemas?
       - Precisa de migration?
       - Precisa atualizar documentação?
-      
+
       Output: Plano de correção detalhado
 
   # 5. Create bug spec
@@ -76,9 +76,9 @@ nodes:
     depends_on: [plan-fix]
     prompt: |
       Crie a especificação do bug para bigpowers.
-      
+
       Formato: specs/bugs/BUG-XXX.md
-      
+
       Inclua:
       1. Título do bug
       2. Descrição
@@ -89,5 +89,5 @@ nodes:
       7. Plano de correção
       8. Testes a adicionar
       9. Verificação (comando para confirmar fix)
-      
+
       Output: Especificação do bug em markdown

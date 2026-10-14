@@ -1,7 +1,48 @@
-# graft's local graph cache — regenerable, not committed (run `graft build`).
-/graft/
+# Dependencies
+node_modules/
+.pnpm-store/
 
-# Archon local cache and worktrees
-.archon/cache/
-.archon/worktrees/
-.archon/.env
+# Next.js
+.next/
+out/
+
+# Build
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+test-results/
+playwright-report/
+
+# Prisma
+prisma/*.db
+prisma/*.db-journal
+
+# bigpowers
+scripts/
+
+# Misc
+*.tsbuildinfo
