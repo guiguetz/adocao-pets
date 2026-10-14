@@ -35,9 +35,10 @@ pnpm prisma db seed
 ```
 
 **Dados criados:**
+
 - 2 ONGs: "Amigos dos Animais", "Patinhas Felizes"
 - 2 Admins: Maria Silva, João Santos
-- 10 Pets (5 por ONG)
+- 4 Pets (2 por ONG)
 
 ### 5. Banco de Dados
 
@@ -47,6 +48,7 @@ pnpm prisma studio
 ```
 
 **Tabelas esperadas:**
+
 - `organizations`
 - `users`
 - `accounts` (Auth.js)
@@ -56,15 +58,10 @@ pnpm prisma studio
 
 ## Deploy na Vercel
 
-### 1. Preparar o Projeto
+### 1. Merge o PR
 
 ```bash
-# Commit das mudanças
-git add .
-git commit -m "feat(e01): setup infraestrutura, auth e seed"
-
-# Push para o GitHub
-git push origin main
+gh pr merge 2 --squash
 ```
 
 ### 2. Configurar na Vercel
@@ -94,13 +91,16 @@ git push origin main
 ## Troubleshooting
 
 ### Erro "Can't reach database"
+
 - Verifique se DATABASE_URL está correta
 - Prisma Postgres pode ter restrição de IP
 
 ### Erro "OAuth error"
+
 - Verifique AUTH_GOOGLE_ID e AUTH_GOOGLE_SECRET
 - Confirme os Redirect URIs no Google Console
 
 ### Middleware não funciona
+
 - Verifique se `src/middleware.ts` está na raiz de `src/`
 - Cheque se o matcher está correto

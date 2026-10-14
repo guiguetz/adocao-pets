@@ -1,54 +1,54 @@
 # Epic 02: Módulo de ONGs
-id: "e02"
-title: "Módulo de ONGs"
-status: "pending"
+id: 'e02'
+title: 'Módulo de ONGs'
+status: 'pending'
 wsjf: 8
-created: "2025-01-27"
+created: '2025-01-27'
 
-goal: "Implementar CRUD completo de ONGs com multi-tenant."
+goal: 'Implementar CRUD completo de ONGs com multi-tenant.'
 
 stories:
-  - id: "e02s01"
-    title: "Repository de ONGs"
-    status: "pending"
+  - id: 'e02s01'
+    title: 'Repository de ONGs'
+    status: 'pending'
     points: 3
-    priority: "must-have"
+    priority: 'must-have'
     description: |
       Implementar OrganizationRepository estendendo BaseRepository.
       Métodos: findBySlug, findByUser.
     acceptance_criteria:
-      - "Repository faz CRUD completo"
-      - "findBySlug funciona"
-      - "Testes unitários passam"
+      - 'Repository faz CRUD completo'
+      - 'findBySlug funciona'
+      - 'Testes unitários passam'
     verify:
-      - "pnpm test:unit -- OrganizationRepository"
+      - 'pnpm test:unit -- OrganizationRepository'
 
-  - id: "e02s02"
-    title: "API routes de ONGs"
-    status: "pending"
+  - id: 'e02s02'
+    title: 'API routes de ONGs'
+    status: 'pending'
     points: 3
-    priority: "must-have"
+    priority: 'must-have'
     description: |
       Criar API routes para ONGs: GET (list), GET/:id, POST, PUT/:id, DELETE/:id.
       Validação com Zod.
     acceptance_criteria:
-      - "POST /api/organizations cria ONG"
-      - "GET /api/organizations lista ONGs"
-      - "Validação retorna 400 em dados inválidos"
+      - 'POST /api/organizations cria ONG'
+      - 'GET /api/organizations lista ONGs'
+      - 'Validação retorna 400 em dados inválidos'
     verify:
-      - "Testes de API com fetch"
+      - 'Testes de API com fetch'
 
-  - id: "e02s03"
-    title: "Página de cadastro de ONG"
-    status: "pending"
+  - id: 'e02s03'
+    title: 'Página de cadastro de ONG'
+    status: 'pending'
     points: 5
-    priority: "must-have"
+    priority: 'must-have'
     description: |
       Formulário de cadastro de ONG com validação client-side.
       Server Action para criação.
     acceptance_criteria:
-      - "Formulário renderiza corretamente"
-      - "Validação mostra erros inline"
-      - "Submit cria ONG e redireciona"
+      - 'Formulário renderiza corretamente'
+      - 'Validação mostra erros inline'
+      - 'Submit cria ONG e redireciona'
     verify:
-      - "Teste E2E: preencher e submeter"
+      - 'Teste E2E: preencher e submeter'

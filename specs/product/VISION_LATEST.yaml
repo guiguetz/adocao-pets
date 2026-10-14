@@ -1,56 +1,56 @@
 # Vision — Adoção de Pets
-version: "1.0"
-created: "2025-01-27"
+version: '1.0'
+created: '2025-01-27'
 
 problem:
-  statement: "Animais em abrigos precisam de lar, mas o processo de adoção é burocrático e fragmentado."
+  statement: 'Animais em abrigos precisam de lar, mas o processo de adoção é burocrático e fragmentado.'
   evidence:
-    - "Milhões de animais em abrigos no Brasil"
-    - "Processo de adoção manual e sem transparência"
-    - "Dificuldade em conectar ONGs a adotantes"
+    - 'Milhões de animais em abrigos no Brasil'
+    - 'Processo de adoção manual e sem transparência'
+    - 'Dificuldade em conectar ONGs a adotantes'
 
 solution:
-  one_liner: "Plataforma open-source que conecta ONGs de proteção animal a pessoas que querem adotar, apadrinhar ou ajudar."
+  one_liner: 'Plataforma open-source que conecta ONGs de proteção animal a pessoas que querem adotar, apadrinhar ou ajudar.'
   key_capabilities:
-    - "Cadastro e gestão de ONGs (multi-tenant)"
-    - "Listagem e busca de pets disponíveis"
-    - "Processo de adoção digital com acompanhamento"
-    - "Apadrinhamento de animais"
-    - "Doações e campanhas"
+    - 'Cadastro e gestão de ONGs (multi-tenant)'
+    - 'Listagem e busca de pets disponíveis'
+    - 'Processo de adoção digital com acompanhamento'
+    - 'Apadrinhamento de animais'
+    - 'Doações e campanhas'
 
 target_users:
-  - role: "Adotante"
-    description: "Pessoa que quer adotar um animal"
-    primary_goal: "Encontrar e adotar um pet"
-  - role: "ONG/Admin"
-    description: "Organização de proteção animal"
-    primary_goal: "Gerenciar pets e processos de adoção"
-  - role: "Padrinho"
-    description: "Pessoa que quer ajudar financeiramente"
-    primary_goal: "Apoiar um animal ou ONG"
+  - role: 'Adotante'
+    description: 'Pessoa que quer adotar um animal'
+    primary_goal: 'Encontrar e adotar um pet'
+  - role: 'ONG/Admin'
+    description: 'Organização de proteção animal'
+    primary_goal: 'Gerenciar pets e processos de adoção'
+  - role: 'Padrinho'
+    description: 'Pessoa que quer ajudar financeiramente'
+    primary_goal: 'Apoiar um animal ou ONG'
 
 success_metrics:
-  - metric: "Animais adotados"
-    target: "100 no primeiro ano"
-  - metric: "ONGs cadastradas"
-    target: "10 no primeiro mês"
-  - metric: "Taxa de conversão"
-    target: ">15% dos visitantes iniciam adoção"
+  - metric: 'Animais adotados'
+    target: '100 no primeiro ano'
+  - metric: 'ONGs cadastradas'
+    target: '10 no primeiro mês'
+  - metric: 'Taxa de conversão'
+    target: '>15% dos visitantes iniciam adoção'
 
 scope:
   in:
-    - "Autenticação (Google OAuth)"
-    - "CRUD de ONGs"
-    - "CRUD de Pets"
-    - "Processo de adoção"
-    - "Dashboard da ONG"
+    - 'Autenticação (Google OAuth)'
+    - 'CRUD de ONGs'
+    - 'CRUD de Pets'
+    - 'Processo de adoção'
+    - 'Dashboard da ONG'
   out:
-    - "Pagamentos/doações (futuro)"
-    - "App mobile nativo (futuro)"
-    - "Chat integrado (futuro)"
+    - 'Pagamentos/doações (futuro)'
+    - 'App mobile nativo (futuro)'
+    - 'Chat integrado (futuro)'
 
 constraints:
-  - "Open-source (MIT license)"
-  - "Stack: Next.js 16, React 19, Prisma, PostgreSQL"
-  - "Acessibilidade (WCAG 2.1 AA)"
-  - "Performance (<3s LCP)"
+  - 'Open-source (MIT license)'
+  - 'Stack: Next.js 16, React 19, Prisma, PostgreSQL'
+  - 'Acessibilidade (WCAG 2.1 AA)'
+  - 'Performance (<3s LCP)'

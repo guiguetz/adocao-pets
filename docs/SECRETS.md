@@ -4,17 +4,17 @@ Este documento lista os secrets necessários para o CI/CD do projeto.
 
 ## Secrets Obrigatórios
 
-| Secret | Descrição | Onde obter |
-|--------|-----------|------------|
-| `DATABASE_URL` | URL de conexão PostgreSQL | Seu provedor de banco (Supabase, Neon, etc.) |
-| `AUTH_SECRET` | Chave secreta do Auth.js | `openssl rand -base64 32` |
-| `AUTH_GOOGLE_ID` | Client ID do Google OAuth | [Google Cloud Console](https://console.cloud.google.com/apis/credentials) |
+| Secret               | Descrição                     | Onde obter                                                                |
+| -------------------- | ----------------------------- | ------------------------------------------------------------------------- |
+| `DATABASE_URL`       | URL de conexão PostgreSQL     | Seu provedor de banco (Supabase, Neon, etc.)                              |
+| `AUTH_SECRET`        | Chave secreta do Auth.js      | `openssl rand -base64 32`                                                 |
+| `AUTH_GOOGLE_ID`     | Client ID do Google OAuth     | [Google Cloud Console](https://console.cloud.google.com/apis/credentials) |
 | `AUTH_GOOGLE_SECRET` | Client Secret do Google OAuth | [Google Cloud Console](https://console.cloud.google.com/apis/credentials) |
 
 ## Variáveis de Ambiente (GitHub Variables)
 
-| Variable | Descrição | Valor padrão |
-|----------|-----------|--------------|
+| Variable              | Descrição        | Valor padrão            |
+| --------------------- | ---------------- | ----------------------- |
 | `NEXT_PUBLIC_APP_URL` | URL da aplicação | `http://localhost:3000` |
 
 ## Como Configurar
