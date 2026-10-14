@@ -10,6 +10,17 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  {
+    ignores: [
+      '.impeccable/**',
+      '.github/**',
+      '.pi/**',
+      'node_modules/**',
+      '.next/**',
+      'dist/**',
+      'tools/**',
+    ],
+  },
   ...compat.extends('next/core-web-vitals'),
   {
     rules: {
