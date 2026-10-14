@@ -2,14 +2,14 @@
 # Project: adocao-pets
 # Stack: Next.js, TypeScript, Tailwind, PostgreSQL, Prisma, Auth.js
 
-# Default provider
-defaultProvider: pi
+# Default assistant
+defaultAssistant: pi
 
 # Assistant configuration
 assistants:
   pi:
     # Model for this project
-    model: anthropic/claude-sonnet-4-20250514
+    model: openrouter/anthropic/claude-sonnet-5.5
     
     # Extensions enabled (bigpowers, pi-graft, etc)
     enableExtensions: true
