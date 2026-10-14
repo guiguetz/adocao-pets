@@ -1,0 +1,53 @@
+# Scope — Adoção de Pets
+version: '1.0'
+created: '2025-01-27'
+
+in_scope:
+  mvp:
+    - id: 'AUTH-001'
+      title: 'Autenticação Google OAuth'
+      description: 'Login/logout com Google via Auth.js'
+      priority: 'must-have'
+
+    - id: 'ORG-001'
+      title: 'Cadastro de ONG'
+      description: 'CRUD de organizações com multi-tenant'
+      priority: 'must-have'
+
+    - id: 'PET-001'
+      title: 'Gestão de Pets'
+      description: 'CRUD de pets com fotos e detalhes'
+      priority: 'must-have'
+
+    - id: 'PET-002'
+      title: 'Listagem e Busca'
+      description: 'Página pública com filtros e busca'
+      priority: 'must-have'
+
+    - id: 'ADOPT-001'
+      title: 'Processo de Adoção'
+      description: 'Formulário de adoção com status tracking'
+      priority: 'must-have'
+
+    - id: 'DASH-001'
+      title: 'Dashboard da ONG'
+      description: 'Painel para gerenciar pets e adoções'
+      priority: 'must-have'
+
+out_of_scope:
+  - 'Pagamentos e doações'
+  - 'App mobile nativo'
+  - 'Chat integrado'
+  - 'Notificações push'
+  - 'Integração com redes sociais'
+
+assumptions:
+  - 'Usuários têm conta Google'
+  - 'ONGs terão um admin responsável'
+  - 'Fotos serão enviadas via URL ou upload'
+
+risks:
+  - risk: 'Baixa adoção inicial'
+    mitigation: 'Parcerias com ONGs existentes'
+  - risk: 'Spam em formulários'
+    mitigation: 'Rate limiting e validação'

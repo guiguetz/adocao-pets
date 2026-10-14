@@ -1,0 +1,74 @@
+# Epic 01: Setup e Infraestrutura
+id: 'e01'
+title: 'Setup e Infraestrutura'
+status: 'pending'
+wsjf: 10
+created: '2025-01-27'
+
+goal: 'Preparar o projeto para desenvolvimento com Prisma, Auth.js e dados de teste.'
+
+stories:
+  - id: 'e01s01'
+    title: 'Configurar Prisma e migrations'
+    status: 'done'
+    points: 3
+    priority: 'must-have'
+    description: |
+      Configurar o Prisma Client, criar a migration inicial do schema
+      e garantir que o banco está funcional.
+    acceptance_criteria:
+      - 'Prisma Client gera sem erros'
+      - 'Migration inicial aplicada com sucesso'
+      - 'Seed script popula dados de teste'
+    verify:
+      - 'pnpm prisma migrate dev --name init'
+      - 'pnpm prisma db seed'
+      - 'pnpm test:unit passa'
+
+  - id: 'e01s02'
+    title: 'Configurar Auth.js com Google OAuth'
+    status: 'done'
+    points: 5
+    priority: 'must-have'
+    description: |
+      Configurar Auth.js v5 com provedor Google OAuth.
+      Implementar callbacks de sessão e JWT.
+    acceptance_criteria:
+      - 'Login com Google funciona'
+      - 'Session contém dados do usuário'
+      - 'Logout limpa sessão'
+    verify:
+      - 'Login/logout manual test'
+      - 'Session callback retorna dados corretos'
+
+  - id: 'e01s03'
+    title: 'Middleware de autenticação'
+    status: 'done'
+    points: 3
+    priority: 'must-have'
+    description: |
+      Criar middleware Next.js que protege rotas autenticadas
+      e redireciona para login.
+    acceptance_criteria:
+      - 'Rotas /admin/* requerem autenticação'
+      - 'Redireciona para /auth/login se não autenticado'
+      - 'Rotas públicas acessíveis sem auth'
+    verify:
+      - 'Acessar /admin sem login → redireciona'
+      - 'Acessar / com login → funciona'
+
+  - id: 'e01s04'
+    title: 'Seed data para desenvolvimento'
+    status: 'done'
+    points: 2
+    priority: 'should-have'
+    description: |
+      Criar script de seed que popula o banco com dados
+      de exemplo (ONGs, pets, usuários).
+    acceptance_criteria:
+      - 'Seed cria 2 ONGs de exemplo'
+      - 'Seed cria 5 pets por ONG'
+      - 'Seed cria 1 admin por ONG'
+    verify:
+      - 'pnpm prisma db seed'
+      - 'Verificar dados no banco'

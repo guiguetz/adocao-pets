@@ -1,0 +1,44 @@
+# Execution Status
+version: '1.0'
+updated: '2025-01-27'
+
+epics:
+  e01:
+    status: 'done'
+    stories:
+      e01s01: 'done'
+      e01s02: 'done'
+      e01s03: 'done'
+      e01s04: 'done'
+      e01s02: 'pending'
+      e01s03: 'pending'
+      e01s04: 'pending'
+
+  e02:
+    status: 'pending'
+    stories:
+      e02s01: 'pending'
+      e02s02: 'pending'
+      e02s03: 'pending'
+
+  e03:
+    status: 'pending'
+    stories:
+      e03s01: 'pending'
+      e03s02: 'pending'
+      e03s03: 'pending'
+      e03s04: 'pending'
+
+  e04:
+    status: 'pending'
+    stories:
+      e04s01: 'pending'
+      e04s02: 'pending'
+      e04s03: 'pending'
+
+  e05:
+    status: 'pending'
+    stories:
+      e05s01: 'pending'
+      e05s02: 'pending'
+      e05s03: 'pending'
