@@ -1,0 +1,41 @@
+# Archon Project Configuration
+# Project: adocao-pets
+# Stack: Next.js, TypeScript, Tailwind, PostgreSQL, Prisma, Auth.js
+
+# Default provider
+defaultProvider: pi
+
+# Assistant configuration
+assistants:
+  pi:
+    # Model for this project
+    model: anthropic/claude-sonnet-4-20250514
+    
+    # Extensions enabled (bigpowers, pi-graft, etc)
+    enableExtensions: true
+    
+    # Environment variables
+    env:
+      # Add project-specific env vars here
+      # DATABASE_URL: "postgresql://..."
+      # NEXTAUTH_SECRET: "..."
+
+# Workflow defaults
+workflows:
+  # Directory for workflows
+  dir: .archon/workflows
+  
+  # Default timeout (30 minutes)
+  timeout: 1800
+
+# Project settings
+project:
+  name: adocao-pets
+  description: App de adoção de pets
+  repository: github.com/guilherme/adocao-pets
+  
+  # Branch naming convention
+  branchPrefix: "<type>/<issue-number>-<slug>"
+  
+  # Commit convention
+  commitConvention: conventional-commits

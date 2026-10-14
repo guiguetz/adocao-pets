@@ -1,0 +1,7 @@
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+/graft/
+
+# Archon local cache and worktrees
+.archon/cache/
+.archon/worktrees/
+.archon/.env

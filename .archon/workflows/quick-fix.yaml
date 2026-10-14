@@ -1,0 +1,53 @@
+# Quick Fix Workflow
+# Fast path for trivial bugs
+name: quick-fix
+description: Fix rápido para bugs triviais
+provider: pi
+
+nodes:
+  # 1. Understand and fix
+  - id: fix
+    prompt: |
+      Corrija o bug reportado.
+      
+      Entrada: $ARGUMENTS
+      
+      Passos:
+      1. Leia a descrição do bug
+      2. Encontre o código problemático
+      3. Implemente a correção
+      4. Adicione teste de regressão
+      
+      Regras:
+      - Mantenha a correção mínima
+      - Não refactorize além do necessário
+      - Teste deve falhar antes e passar depois
+      
+      Output: Bug corrigido
+
+  # 2. Verify fix
+  - id: verify
+    depends_on: [fix]
+    bash: |
+      echo "Verifying fix..."
+      
+      # Run related tests
+      pnpm test:unit || exit 1
+      
+      # Type check
+      pnpm typecheck || exit 1
+      
+      echo "✅ Fix verified"
+
+  # 3. Create PR
+  - id: create-pr
+    depends_on: [verify]
+    prompt: |
+      Crie o PR para o fix.
+      
+      Formato:
+      - Título: fix(scope): description
+      - Corpo: Descreve o bug e a correção
+      - Closes #<issue>
+      
+      Output: URL do PR

@@ -1,0 +1,90 @@
+# Code Review Workflow
+# Reviews code changes for quality, security, and conventions
+name: review-code
+description: Revisão de código completa
+provider: pi
+
+nodes:
+  # 1. Analyze changes
+  - id: analyze
+    prompt: |
+      Analise as mudanças no código.
+      
+      Contexto: $ARGUMENTS
+      
+      Identifique:
+      1. Arquivos modificados
+      2. Natureza das mudanças (feature, fix, refactor)
+      3. Impacto no sistema
+      
+      Output: Lista de arquivos e resumo das mudanças
+
+  # 2. Check conventions
+  - id: conventions
+    depends_on: [analyze]
+    prompt: |
+      Verifique se as mudanças seguem as convenções do projeto.
+      
+      Regras (de CONVENTIONS.md):
+      - Arquivos até 300 linhas
+      - Funções até 40 linhas
+      - Tipos explícitos (sem any)
+      - Early returns
+      - Sem condicionais aninhadas > 2 níveis
+      - Strings/números mágicos em constantes
+      - Mensagens de erro informativas
+      
+      Para cada violação:
+      - Arquivo e linha
+      - Regra violada
+      - Sugestão de correção
+      
+      Output: Lista de violações encontradas
+
+  # 3. Security review
+  - id: security
+    depends_on: [analyze]
+    prompt: |
+      Analise as mudanças para problemas de segurança.
+      
+      Verifique:
+      1. SQL Injection - queries parametrizadas?
+      2. XSS - output sanitizado?
+      3. Auth - verificações adequadas?
+      4. Secrets - credenciais hardcoded?
+      5. Input validation - Zod em todas as entradas?
+      6. Tenant isolation - organization_id em todas as queries?
+      
+      Output: Lista de vulnerabilidades encontradas
+
+  # 4. Test coverage
+  - id: tests
+    depends_on: [analyze]
+    prompt: |
+      Verifique a cobertura de testes.
+      
+      Para cada mudança:
+      - Existe teste unitário?
+      - Existe teste de integração se necessário?
+      - Os testes cobrem edge cases?
+      - Há teste de isolamento de tenant?
+      
+      Output: Análise de cobertura
+
+  # 5. Synthesize review
+  - id: synthesize
+    depends_on: [conventions, security, tests]
+    prompt: |
+      Sintetize a revisão de código.
+      
+      Dados:
+      - Violações de convenções: $conventions.output
+      - Problemas de segurança: $security.output
+      - Cobertura de testes: $tests.output
+      
+      Classifique os problemas:
+      - 🔴 CRÍTICO: Deve corrigir antes do merge
+      - 🟡 IMPORTANTE: Deveria corrigir
+      - 🟢 SUGESTÃO: Melhoria opcional
+      
+      Output: Relatório final de revisão com ações priorizadas
