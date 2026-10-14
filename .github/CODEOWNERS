@@ -1,0 +1,12 @@
+# Default owner
+* @guilherme
+
+# CI/CD
+.github/ @guilherme
+
+# Database
+prisma/ @guilherme
+
+# Docs
+docs/ @guilherme
+specs/ @guilherme

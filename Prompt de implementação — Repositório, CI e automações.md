@@ -167,6 +167,7 @@ Cole este bloco no `CONVENTIONS.md` depois do conteúdo gerado pelo `seed-conven
 ## App rules
 
 ### Git
+
 - MUST name branches `<type>/<issue-number>-<slug>`.
 - MUST write Conventional Commits. Allowed scopes: auth, orgs, pets, discovery, queue, scheduling, ci, deps, docs.
 - MUST open a PR for every change. MUST include `Closes #<issue>` in the PR body.
@@ -176,10 +177,12 @@ Cole este bloco no `CONVENTIONS.md` depois do conteúdo gerado pelo `seed-conven
 - NEVER create GitHub issues from agents. Only `tools/sync-issues.ts`, run by the owner or CI, creates issues.
 
 ### Commands
+
 - Preflight is `pnpm verify`. It MUST pass before the kickoff, develop, and verify steps.
 - `pnpm verify:fast` runs typecheck, related unit tests, and the design detector.
 
 ### Architecture
+
 - MUST access the database only through `src/server/db/`. Every query MUST filter by `organization_id`.
 - MUST check authorization on the server for every route and action.
 - NEVER trust roles or entity ids sent by the client.
@@ -187,6 +190,7 @@ Cole este bloco no `CONVENTIONS.md` depois do conteúdo gerado pelo `seed-conven
 - MUST keep migrations compatible with the previous app version: expand, migrate, then contract.
 
 ### Code style
+
 - Files MUST NOT exceed 300 lines. Functions MUST NOT exceed 40 lines. ESLint enforces both.
 - MUST use explicit types. NEVER use `any`.
 - MUST use early returns. MUST NOT nest conditionals deeper than two levels.
@@ -194,6 +198,7 @@ Cole este bloco no `CONVENTIONS.md` depois do conteúdo gerado pelo `seed-conven
 - Exception messages MUST include the offending value, the expected shape, and a remediation hint.
 
 ### Tests
+
 - MUST add a test for every new function and a regression test for every bug fix.
 - MUST add a tenant-isolation test for every new query or route that touches organization data.
 - MUST tag each story with `story: eNNsNN` in implementing code or tests.
@@ -201,16 +206,19 @@ Cole este bloco no `CONVENTIONS.md` depois do conteúdo gerado pelo `seed-conven
 - NEVER use fixed waits in e2e tests. Use role and label selectors.
 
 ### UI and accessibility
+
 - MUST write all user-facing text in pt-BR.
 - MUST meet WCAG 2.1 AA. Every swipe gesture MUST have a keyboard-reachable button.
 - MUST follow the `DESIGN.md` tokens. MUST run `/impeccable audit` before opening a UI PR.
 
 ### Privacy
+
 - NEVER log phone numbers, e-mail addresses, or screening answers.
 - NEVER put real personal data in fixtures or seeds.
 - MUST show contact data only to users the flow authorizes.
 
 ### Never do
+
 - NEVER edit skill files installed by bigpowers or Impeccable. Update them with their installers.
 - NEVER change workflows, rulesets, or secrets unless the owner asks.
 - NEVER mark a story done before the owner confirms behavior in `verify-work`.
@@ -220,6 +228,7 @@ Acrescente também estas regras de paralelismo ao bloco anterior:
 
 ```markdown
 ### Parallel work
+
 - MUST declare `touches`, `depends_on`, and `migrations` for every story in its epic file.
 - MUST NOT run two stories at once when their `touches` overlap.
 - MUST NOT run two stories with migrations at the same time.
@@ -233,11 +242,11 @@ Acrescente também estas regras de paralelismo ao bloco anterior:
 
 Os hooks dão feedback rápido antes do commit e do push, mas podem ser pulados, então o CI repete tudo e é o gate de verdade.
 
-| Hook | O que roda | Meta de tempo |
-| --- | --- | --- |
-| `pre-commit` | `lint-staged`: Prettier e ESLint com correção nos arquivos em stage | até 10 s |
-| `commit-msg` | `commitlint` na mensagem | instantâneo |
-| `pre-push` | `tools/check-branch.sh` e `pnpm verify:fast` | até 60 s |
+| Hook         | O que roda                                                          | Meta de tempo |
+| ------------ | ------------------------------------------------------------------- | ------------- |
+| `pre-commit` | `lint-staged`: Prettier e ESLint com correção nos arquivos em stage | até 10 s      |
+| `commit-msg` | `commitlint` na mensagem                                            | instantâneo   |
+| `pre-push`   | `tools/check-branch.sh` e `pnpm verify:fast`                        | até 60 s      |
 
 `tools/check-branch.sh` falha o push quando:
 
@@ -263,25 +272,25 @@ Os hooks dão feedback rápido antes do commit e do push, mas podem ser pulados,
 
 Os mesmos scripts rodam no terminal, nos hooks e no CI, para o resultado local ser igual ao do GitHub.
 
-| Script | O que faz |
-| --- | --- |
-| `dev`, `build`, `start` | Ciclo normal do Next.js |
-| `format`, `format:check` | Prettier (escrita e verificação) |
-| `lint` | ESLint com a configuração flat do projeto |
-| `typecheck` | `tsc --noEmit` |
-| `test:unit` | Vitest, com cobertura |
-| `test:integration` | Vitest contra um PostgreSQL real, incluindo isolamento entre entidades |
-| `test:e2e` | Playwright, specs de `tests/e2e/` |
-| `test:a11y` | Specs Playwright marcadas `@a11y`, com axe |
-| `test:visual` | Specs Playwright de `tests/visual/` com `toHaveScreenshot` |
-| `design:detect` | `npx impeccable detect --json src/`, com saída salva em arquivo |
-| `db:migrate`, `db:seed`, `db:test:reset` | Migrations, seed (Codevida, super admin e pets fictícios) e banco de teste limpo |
-| `verify:fast` | `typecheck`, testes unitários dos arquivos alterados e `design:detect` nos arquivos de interface alterados |
-| `verify` | `format:check`, `lint`, `typecheck`, `test:unit`, `test:integration`, `design:detect` e `build` |
-| `verify:full` | Tudo de `verify`, mais test:lighthouse, `test:e2e`, `test:a11y` e `test:visual` |
-| sync:issues | Cria e atualiza no GitHub as issues das stories de specs/epics/ e as adiciona ao Project; aceita --dry-run (seção 11) |
-| check:trace | Falha se um requisito numerado de docs/product-spec.md não aparece em nenhuma story, ou se uma story cita um requisito que não existe (seção 11); roda no job static do CI |
-| test:lighthouse | Lighthouse CI (lhci autorun) nas páginas públicas, com as metas da seção 9 |
+| Script                                   | O que faz                                                                                                                                                                  |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `dev`, `build`, `start`                  | Ciclo normal do Next.js                                                                                                                                                    |
+| `format`, `format:check`                 | Prettier (escrita e verificação)                                                                                                                                           |
+| `lint`                                   | ESLint com a configuração flat do projeto                                                                                                                                  |
+| `typecheck`                              | `tsc --noEmit`                                                                                                                                                             |
+| `test:unit`                              | Vitest, com cobertura                                                                                                                                                      |
+| `test:integration`                       | Vitest contra um PostgreSQL real, incluindo isolamento entre entidades                                                                                                     |
+| `test:e2e`                               | Playwright, specs de `tests/e2e/`                                                                                                                                          |
+| `test:a11y`                              | Specs Playwright marcadas `@a11y`, com axe                                                                                                                                 |
+| `test:visual`                            | Specs Playwright de `tests/visual/` com `toHaveScreenshot`                                                                                                                 |
+| `design:detect`                          | `npx impeccable detect --json src/`, com saída salva em arquivo                                                                                                            |
+| `db:migrate`, `db:seed`, `db:test:reset` | Migrations, seed (Codevida, super admin e pets fictícios) e banco de teste limpo                                                                                           |
+| `verify:fast`                            | `typecheck`, testes unitários dos arquivos alterados e `design:detect` nos arquivos de interface alterados                                                                 |
+| `verify`                                 | `format:check`, `lint`, `typecheck`, `test:unit`, `test:integration`, `design:detect` e `build`                                                                            |
+| `verify:full`                            | Tudo de `verify`, mais test:lighthouse, `test:e2e`, `test:a11y` e `test:visual`                                                                                            |
+| sync:issues                              | Cria e atualiza no GitHub as issues das stories de specs/epics/ e as adiciona ao Project; aceita --dry-run (seção 11)                                                      |
+| check:trace                              | Falha se um requisito numerado de docs/product-spec.md não aparece em nenhuma story, ou se uma story cita um requisito que não existe (seção 11); roda no job static do CI |
+| test:lighthouse                          | Lighthouse CI (lhci autorun) nas páginas públicas, com as metas da seção 9                                                                                                 |
 
 **Ferramentas fixas**
 
@@ -292,14 +301,14 @@ Os mesmos scripts rodam no terminal, nos hooks e no CI, para o resultado local s
 
 Seis workflows cobrem validação, segurança, higiene do PR, Project, atualização de snapshots e sincronização de issues; o `ci.yml` é o principal e tem um job final que concentra o resultado.
 
-| Workflow | Gatilho | Para que serve |
-| --- | --- | --- |
-| `ci.yml` | `pull_request` (abertura, novos commits, reabertura e saída de rascunho) e `push` na `main` | Valida o código |
-| `security.yml` | PR, push na `main` e agenda semanal | Dependências, análise estática e segredos |
-| `pr-hygiene.yml` | `pull_request` | Título, vínculo com issue, nome da branch e rótulo de tamanho |
-| `project-automation.yml` | Eventos de issue e PR | Move os cards do Project (seção 11) |
-| `visual-baseline.yml` | `workflow_dispatch` e rótulo `update-snapshots` | Regera snapshots visuais no runner Linux e faz commit na branch do PR |
-| sync-issues.yml | push na main com mudanças em specs/, e workflow\_dispatch | Cria e atualiza as issues das stories (seção 11) |
+| Workflow                 | Gatilho                                                                                     | Para que serve                                                        |
+| ------------------------ | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `ci.yml`                 | `pull_request` (abertura, novos commits, reabertura e saída de rascunho) e `push` na `main` | Valida o código                                                       |
+| `security.yml`           | PR, push na `main` e agenda semanal                                                         | Dependências, análise estática e segredos                             |
+| `pr-hygiene.yml`         | `pull_request`                                                                              | Título, vínculo com issue, nome da branch e rótulo de tamanho         |
+| `project-automation.yml` | Eventos de issue e PR                                                                       | Move os cards do Project (seção 11)                                   |
+| `visual-baseline.yml`    | `workflow_dispatch` e rótulo `update-snapshots`                                             | Regera snapshots visuais no runner Linux e faz commit na branch do PR |
+| sync-issues.yml          | push na main com mudanças em specs/, e workflow\_dispatch                                   | Cria e atualiza as issues das stories (seção 11)                      |
 
 **Jobs do `ci.yml`**
 
@@ -337,14 +346,14 @@ Seis workflows cobrem validação, segurança, higiene do PR, Project, atualiza�
 
 Os testes protegem primeiro o que mais machuca se quebrar: isolamento entre entidades, permissões, estados da fila e reserva de horários. Escreva cada teste junto com a fase do produto que o exige.
 
-| Camada | Ferramenta | O que cobre | Onde |
-| --- | --- | --- | --- |
-| Unitário | Vitest | Máquinas de estado (vínculo, pet, interesse, agendamento), regras de fila e prazos, validações Zod | Ao lado do código |
-| Integração | Vitest com PostgreSQL real | Repositórios, migrations, transações (sem reserva dupla), autorização | `tests/integration/` |
-| Isolamento entre entidades | Vitest com PostgreSQL real | Para cada rota e consulta de painel, um usuário da entidade A tenta ler ou alterar dados da B e recebe 403 ou 404 | `tests/integration/tenancy/` |
-| E2E | Playwright | Fluxos críticos abaixo | `tests/e2e/` |
-| Acessibilidade | Playwright com axe | Telas-chave (seção 9) | `tests/e2e/`, marcadas `@a11y` |
-| Regressão visual | Playwright `toHaveScreenshot` | Telas-chave em celular e desktop | `tests/visual/` |
+| Camada                     | Ferramenta                    | O que cobre                                                                                                       | Onde                           |
+| -------------------------- | ----------------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| Unitário                   | Vitest                        | Máquinas de estado (vínculo, pet, interesse, agendamento), regras de fila e prazos, validações Zod                | Ao lado do código              |
+| Integração                 | Vitest com PostgreSQL real    | Repositórios, migrations, transações (sem reserva dupla), autorização                                             | `tests/integration/`           |
+| Isolamento entre entidades | Vitest com PostgreSQL real    | Para cada rota e consulta de painel, um usuário da entidade A tenta ler ou alterar dados da B e recebe 403 ou 404 | `tests/integration/tenancy/`   |
+| E2E                        | Playwright                    | Fluxos críticos abaixo                                                                                            | `tests/e2e/`                   |
+| Acessibilidade             | Playwright com axe            | Telas-chave (seção 9)                                                                                             | `tests/e2e/`, marcadas `@a11y` |
+| Regressão visual           | Playwright `toHaveScreenshot` | Telas-chave em celular e desktop                                                                                  | `tests/visual/`                |
 
 **Fluxos E2E obrigatórios**
 
@@ -457,17 +466,17 @@ O Project reflete o estado real do trabalho: cada evento de issue ou PR move o c
 
 **Eventos e status resultante**
 
-| Evento | Status do card | Como |
-| --- | --- | --- |
-| Issue ou PR do repositório criado | `Todo` | Nativo: auto-add e "item adicionado" |
-| Issue atribuída ou branch criada com o padrão \<tipo>/\<n>-\<slug> | `In progress` | Action |
-| PR aberto como rascunho | `In progress` (PR e issue vinculada) | Action |
-| PR marcado como pronto para review | `In review` (PR e issue vinculada) | Action |
-| Review pede mudanças ou PR volta a rascunho | `In progress` | Nativo, se disponível; senão Action |
-| PR mergeado | `Done` | Nativo (ligado por padrão) |
-| Issue fechada (inclusive via `Closes #n`) | `Done` | Nativo (ligado por padrão) |
-| Issue reaberta | `Todo` | Nativo |
-| Item em `Done` há mais de 14 dias | Arquivado | Nativo: auto-archive |
+| Evento                                                             | Status do card                       | Como                                 |
+| ------------------------------------------------------------------ | ------------------------------------ | ------------------------------------ |
+| Issue ou PR do repositório criado                                  | `Todo`                               | Nativo: auto-add e "item adicionado" |
+| Issue atribuída ou branch criada com o padrão \<tipo>/\<n>-\<slug> | `In progress`                        | Action                               |
+| PR aberto como rascunho                                            | `In progress` (PR e issue vinculada) | Action                               |
+| PR marcado como pronto para review                                 | `In review` (PR e issue vinculada)   | Action                               |
+| Review pede mudanças ou PR volta a rascunho                        | `In progress`                        | Nativo, se disponível; senão Action  |
+| PR mergeado                                                        | `Done`                               | Nativo (ligado por padrão)           |
+| Issue fechada (inclusive via `Closes #n`)                          | `Done`                               | Nativo (ligado por padrão)           |
+| Issue reaberta                                                     | `Todo`                               | Nativo                               |
+| Item em `Done` há mais de 14 dias                                  | Arquivado                            | Nativo: auto-archive                 |
 
 **`project-automation.yml`**
 
@@ -552,15 +561,15 @@ Há três ambientes, local, preview e produção, e nenhum deles compartilha ban
 
 **Segredos**
 
-| Segredo | Onde fica | Uso |
-| --- | --- | --- |
-| `DATABASE_URL` | Vercel (por ambiente) e Actions (banco do CI, efêmero) | Conexão com o PostgreSQL |
-| `AUTH_SECRET` | Vercel (por ambiente) | Assinatura de sessão do Auth.js |
-| `AUTH_GOOGLE_ID`, `AUTH_GOOGLE_SECRET` | Vercel (por ambiente) | Login com Google |
-| Chaves de armazenamento e e-mail | Vercel (por ambiente) | Fotos, comprovantes e notificações |
-| `SENTRY_DSN` e token de source maps | Vercel e Actions | Monitoramento de erros |
-| `PROJECT_APP_ID`, `PROJECT_APP_PRIVATE_KEY` | Actions | Automação do Project (seção 11) |
-| `AUTH_TEST_MODE` | Somente CI e local | Login de teste; nunca definido em produção |
+| Segredo                                     | Onde fica                                              | Uso                                        |
+| ------------------------------------------- | ------------------------------------------------------ | ------------------------------------------ |
+| `DATABASE_URL`                              | Vercel (por ambiente) e Actions (banco do CI, efêmero) | Conexão com o PostgreSQL                   |
+| `AUTH_SECRET`                               | Vercel (por ambiente)                                  | Assinatura de sessão do Auth.js            |
+| `AUTH_GOOGLE_ID`, `AUTH_GOOGLE_SECRET`      | Vercel (por ambiente)                                  | Login com Google                           |
+| Chaves de armazenamento e e-mail            | Vercel (por ambiente)                                  | Fotos, comprovantes e notificações         |
+| `SENTRY_DSN` e token de source maps         | Vercel e Actions                                       | Monitoramento de erros                     |
+| `PROJECT_APP_ID`, `PROJECT_APP_PRIVATE_KEY` | Actions                                                | Automação do Project (seção 11)            |
+| `AUTH_TEST_MODE`                            | Somente CI e local                                     | Login de teste; nunca definido em produção |
 
 **Login do Google fora de produção**
 
@@ -576,21 +585,21 @@ Há três ambientes, local, preview e produção, e nenhum deles compartilha ban
 
 Implemente em 13 etapas, cada uma em um PR próprio, e só comece a etapa seguinte depois do merge da anterior. Até a etapa 5 o ruleset ainda não existe, então esses PRs entram sem checks obrigatórios; da etapa 5 em diante toda mudança segue o fluxo completo.
 
-| Etapa | Entrega | Critério de aceite |
-| --- | --- | --- |
-| 1. Fundação | Esqueleto Next.js com TypeScript, pnpm, `.nvmrc`, ESLint, Prettier, estrutura de pastas, `README`, `CONTRIBUTING`, `AGENTS.md`, `CONVENTIONS.md` (com `TODO`), templates e `CODEOWNERS` | `pnpm install && pnpm verify` roda do zero em máquina limpa |
-| 2. Hooks | Husky, lint-staged, commitlint e `check-branch.sh` | Commit com mensagem inválida, push na `main` e branch fora do padrão são barrados |
-| 3. CI base | `ci.yml` com `static`, `unit`, `build` e `ci-ok`, com cache e concorrência | PR de teste com erro de lint deixa `CI OK` vermelho; PR correto passa |
-| 4. Banco e integração | Container PostgreSQL, migrations, jobs `migrations` e `integration`, primeiro teste de isolamento | O teste de isolamento falha quando o filtro por entidade é removido de propósito |
-| 5. Ruleset e segurança | Ruleset da `main`, squash, Dependabot, `security.yml` e `pr-hygiene.yml` | Push direto na `main` e merge com `CI OK` vermelho são bloqueados; título de PR inválido falha |
-| 6. Agentes e design | bigpowers (setup, init e seed-conventions, mesclando os arquivos existentes) e Impeccable instalados, `PRODUCT.md`, bloco do `.gitignore`, job story-trace, a seção do app no CONVENTIONS.md, workflow\_mode team-pr e job `design-detect` | PR de teste com um padrão que o detector acusa falha o job; story sem tag falha o story-trace e workflow\_mode diferente de team-pr falha o static |
-| 7. E2E | Playwright, login de teste, `storageState` por papel, seed de teste e job `e2e` com o fluxo do feed público | Job verde em PR pronto, pulado em rascunho; teste prova que o login de teste não existe no build de produção |
-| 8. Acessibilidade, visual e desempenho | Jobs `a11y` e `visual`, lighthouse (com lighthouserc.js) e o `visual-baseline.yml` | Violação `serious` introduzida de propósito falha o `a11y`; mudança visual falha o `visual` e é resolvida pelo workflow de baseline; nota de acessibilidade abaixo de 95 falha o job lighthouse |
-| 9. Project | Campos, automações nativas, `project-automation.yml`, GitHub App, sincronização de issues (sync-issues) e checagem de rastreabilidade | O roteiro de teste da seção 11 produz o status esperado em cada passo; rodar a sincronização duas vezes não duplica issues, e um requisito sem story falha a checagem |
-| 10. Deploy | Vercel (preview e produção), migrations no pipeline, Sentry e runbooks | PR gera preview com banco de preview; merge publica em produção; rollback testado uma vez |
-| 11. Piloto | orchestrate-project sobre docs/product-spec.md (fases 1 a 3), sync:issues e uma story completa conduzida pelo build-epic | Issues e cards criados a partir dos épicos; a story percorre o ciclo do bigpowers e chega à main por PR com CI OK verde; o card termina em Done |
-| 12. Paralelismo | tools/ready-stories.ts, tools/worktree-up.sh e worktree-down.sh, campos touches, depends\_on e migrations nas stories e limite de 2 stories em andamento | Duas stories independentes do piloto rodam em worktrees paralelos, cada uma com sua branch de banco, e chegam à main por PR sem conflito de estado; o ready-stories recusa a terceira |
-| 13. Fechamento | ADRs iniciais, revisão do `CONTRIBUTING` e checklist final | Todos os checks da seção 10 estão obrigatórios e a lista de pendências está atualizada |
+| Etapa                                  | Entrega                                                                                                                                                                                                                                    | Critério de aceite                                                                                                                                                                              |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Fundação                            | Esqueleto Next.js com TypeScript, pnpm, `.nvmrc`, ESLint, Prettier, estrutura de pastas, `README`, `CONTRIBUTING`, `AGENTS.md`, `CONVENTIONS.md` (com `TODO`), templates e `CODEOWNERS`                                                    | `pnpm install && pnpm verify` roda do zero em máquina limpa                                                                                                                                     |
+| 2. Hooks                               | Husky, lint-staged, commitlint e `check-branch.sh`                                                                                                                                                                                         | Commit com mensagem inválida, push na `main` e branch fora do padrão são barrados                                                                                                               |
+| 3. CI base                             | `ci.yml` com `static`, `unit`, `build` e `ci-ok`, com cache e concorrência                                                                                                                                                                 | PR de teste com erro de lint deixa `CI OK` vermelho; PR correto passa                                                                                                                           |
+| 4. Banco e integração                  | Container PostgreSQL, migrations, jobs `migrations` e `integration`, primeiro teste de isolamento                                                                                                                                          | O teste de isolamento falha quando o filtro por entidade é removido de propósito                                                                                                                |
+| 5. Ruleset e segurança                 | Ruleset da `main`, squash, Dependabot, `security.yml` e `pr-hygiene.yml`                                                                                                                                                                   | Push direto na `main` e merge com `CI OK` vermelho são bloqueados; título de PR inválido falha                                                                                                  |
+| 6. Agentes e design                    | bigpowers (setup, init e seed-conventions, mesclando os arquivos existentes) e Impeccable instalados, `PRODUCT.md`, bloco do `.gitignore`, job story-trace, a seção do app no CONVENTIONS.md, workflow\_mode team-pr e job `design-detect` | PR de teste com um padrão que o detector acusa falha o job; story sem tag falha o story-trace e workflow\_mode diferente de team-pr falha o static                                              |
+| 7. E2E                                 | Playwright, login de teste, `storageState` por papel, seed de teste e job `e2e` com o fluxo do feed público                                                                                                                                | Job verde em PR pronto, pulado em rascunho; teste prova que o login de teste não existe no build de produção                                                                                    |
+| 8. Acessibilidade, visual e desempenho | Jobs `a11y` e `visual`, lighthouse (com lighthouserc.js) e o `visual-baseline.yml`                                                                                                                                                         | Violação `serious` introduzida de propósito falha o `a11y`; mudança visual falha o `visual` e é resolvida pelo workflow de baseline; nota de acessibilidade abaixo de 95 falha o job lighthouse |
+| 9. Project                             | Campos, automações nativas, `project-automation.yml`, GitHub App, sincronização de issues (sync-issues) e checagem de rastreabilidade                                                                                                      | O roteiro de teste da seção 11 produz o status esperado em cada passo; rodar a sincronização duas vezes não duplica issues, e um requisito sem story falha a checagem                           |
+| 10. Deploy                             | Vercel (preview e produção), migrations no pipeline, Sentry e runbooks                                                                                                                                                                     | PR gera preview com banco de preview; merge publica em produção; rollback testado uma vez                                                                                                       |
+| 11. Piloto                             | orchestrate-project sobre docs/product-spec.md (fases 1 a 3), sync:issues e uma story completa conduzida pelo build-epic                                                                                                                   | Issues e cards criados a partir dos épicos; a story percorre o ciclo do bigpowers e chega à main por PR com CI OK verde; o card termina em Done                                                 |
+| 12. Paralelismo                        | tools/ready-stories.ts, tools/worktree-up.sh e worktree-down.sh, campos touches, depends\_on e migrations nas stories e limite de 2 stories em andamento                                                                                   | Duas stories independentes do piloto rodam em worktrees paralelos, cada uma com sua branch de banco, e chegam à main por PR sem conflito de estado; o ready-stories recusa a terceira           |
+| 13. Fechamento                         | ADRs iniciais, revisão do `CONTRIBUTING` e checklist final                                                                                                                                                                                 | Todos os checks da seção 10 estão obrigatórios e a lista de pendências está atualizada                                                                                                          |
 
 **Entrega final**
 
@@ -607,27 +616,27 @@ Deixe de fora o que não é preciso para o primeiro ciclo. As decisões fechadas
 
 **Decisões e pontos em aberto**
 
-| Ponto | Estado | Decisão ou padrão |
-| --- | --- | --- |
-| Repositório público ou privado? | Fechado | Público. CodeQL, secret scanning com push protection e Actions sem custo de minutos ficam disponíveis. Segredo e dado pessoal nunca entram no repositório, e workflows com segredo não rodam para PRs de forks |
-| Project em conta pessoal ou organização? | Fechado | Conta pessoal, com token de GitHub App |
-| Solo ou time? | Fechado | Solo com agentes: 0 aprovações no ruleset e `CODEOWNERS` pronto para ligar |
-| Prisma ou Drizzle? | Fechado | Prisma |
-| Provedor de banco | Fechado | Neon, com branch de banco por PR |
-| Idioma dos commits | Fechado | Inglês |
-| `specs/state.yaml` e `specs/metrics/` no git? | Fechado | Sim, `specs/` inteira é versionada; revisar se o `state.yaml` gerar conflitos entre branches |
-| Ferramentas de agente | Fechado | Só o Pi: instalar bigpowers e Impeccable apenas para ele; o `CLAUDE.md` gerado pelo seed é um link para o `AGENTS.md` |
-| `workflow_mode` | Fechado | `team-pr` em `specs/state.yaml`; o job `static` falha com outro valor |
-| Tags `story: eNNsNN` e `trace-stories.sh --strict` | Fechado | Adotadas; o job `story-trace` instala o bigpowers na versão fixada |
-| Limites de tamanho | Fechado | Arquivos de 300 linhas e funções de 40, aplicados pelo ESLint |
-| `Co-authored-by` de agente nos commits | Fechado | Proibido, como no modelo do bigpowers |
-| Quem roda `sync:issues` | Fechado | Só o dono e o CI; agentes não criam issues |
-| Conteúdo do `CONVENTIONS.md` | Fechado | Modelo gerado pelo seed mais a seção do app (seção 4); o dono revisa na primeira rodada |
-| Metas do Lighthouse | Padrão | As da seção 9; LCP e desempenho passam de aviso a erro após duas semanas de linha de base |
-| Cobertura mínima em `src/domain` | Padrão | 80%; revisar após as primeiras fases do produto |
-| Comando de conformidade do `audit-code` | Padrão | Confirmar na primeira rodada e registrar em ADR; o gate de 94% não é rebaixado |
-| Campo `covers` nas stories | Padrão | Convenção do projeto registrada em ADR; se a validação do bigpowers rejeitar, guardar a lista em comentário padronizado |
-| `build-epic`: completo ou passo a passo? | Padrão | Passo a passo nas primeiras stories; modo completo quando o fluxo estiver confiável |
-| Limite de stories em paralelo | Padrão | 2; subir só depois de medir conflitos e custo de revisão |
-| Subagentes (dispatch-agents) | Fechado | O Pi já tem a extensão de subagentes; uso permitido dentro de uma story |
-| Nome da branch e da pasta no kickoff-branch | Padrão | Testar na primeira story paralela e registrar a solução em ADR |
+| Ponto                                              | Estado  | Decisão ou padrão                                                                                                                                                                                              |
+| -------------------------------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Repositório público ou privado?                    | Fechado | Público. CodeQL, secret scanning com push protection e Actions sem custo de minutos ficam disponíveis. Segredo e dado pessoal nunca entram no repositório, e workflows com segredo não rodam para PRs de forks |
+| Project em conta pessoal ou organização?           | Fechado | Conta pessoal, com token de GitHub App                                                                                                                                                                         |
+| Solo ou time?                                      | Fechado | Solo com agentes: 0 aprovações no ruleset e `CODEOWNERS` pronto para ligar                                                                                                                                     |
+| Prisma ou Drizzle?                                 | Fechado | Prisma                                                                                                                                                                                                         |
+| Provedor de banco                                  | Fechado | Neon, com branch de banco por PR                                                                                                                                                                               |
+| Idioma dos commits                                 | Fechado | Inglês                                                                                                                                                                                                         |
+| `specs/state.yaml` e `specs/metrics/` no git?      | Fechado | Sim, `specs/` inteira é versionada; revisar se o `state.yaml` gerar conflitos entre branches                                                                                                                   |
+| Ferramentas de agente                              | Fechado | Só o Pi: instalar bigpowers e Impeccable apenas para ele; o `CLAUDE.md` gerado pelo seed é um link para o `AGENTS.md`                                                                                          |
+| `workflow_mode`                                    | Fechado | `team-pr` em `specs/state.yaml`; o job `static` falha com outro valor                                                                                                                                          |
+| Tags `story: eNNsNN` e `trace-stories.sh --strict` | Fechado | Adotadas; o job `story-trace` instala o bigpowers na versão fixada                                                                                                                                             |
+| Limites de tamanho                                 | Fechado | Arquivos de 300 linhas e funções de 40, aplicados pelo ESLint                                                                                                                                                  |
+| `Co-authored-by` de agente nos commits             | Fechado | Proibido, como no modelo do bigpowers                                                                                                                                                                          |
+| Quem roda `sync:issues`                            | Fechado | Só o dono e o CI; agentes não criam issues                                                                                                                                                                     |
+| Conteúdo do `CONVENTIONS.md`                       | Fechado | Modelo gerado pelo seed mais a seção do app (seção 4); o dono revisa na primeira rodada                                                                                                                        |
+| Metas do Lighthouse                                | Padrão  | As da seção 9; LCP e desempenho passam de aviso a erro após duas semanas de linha de base                                                                                                                      |
+| Cobertura mínima em `src/domain`                   | Padrão  | 80%; revisar após as primeiras fases do produto                                                                                                                                                                |
+| Comando de conformidade do `audit-code`            | Padrão  | Confirmar na primeira rodada e registrar em ADR; o gate de 94% não é rebaixado                                                                                                                                 |
+| Campo `covers` nas stories                         | Padrão  | Convenção do projeto registrada em ADR; se a validação do bigpowers rejeitar, guardar a lista em comentário padronizado                                                                                        |
+| `build-epic`: completo ou passo a passo?           | Padrão  | Passo a passo nas primeiras stories; modo completo quando o fluxo estiver confiável                                                                                                                            |
+| Limite de stories em paralelo                      | Padrão  | 2; subir só depois de medir conflitos e custo de revisão                                                                                                                                                       |
+| Subagentes (dispatch-agents)                       | Fechado | O Pi já tem a extensão de subagentes; uso permitido dentro de uma story                                                                                                                                        |
+| Nome da branch e da pasta no kickoff-branch        | Padrão  | Testar na primeira story paralela e registrar a solução em ADR                                                                                                                                                 |

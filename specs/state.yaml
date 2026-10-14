@@ -1,0 +1,7 @@
+# Project state
+workflow_mode: solo-git
+current_epic: null
+current_story: null
+handoff:
+  next_skill: null
+  reason: null

@@ -9,18 +9,18 @@ nodes:
   - id: discover
     prompt: |
       Execute a fase de descoberta do bigpowers.
-      
+
       Leia:
       1. docs/product-spec.md - requisitos do produto
       2. specs/product/ - escopo e visão existente
       3. AGENTS.md e CONVENTIONS.md - regras do projeto
-      
+
       Tarefas:
       1. Analise o documento do produto
       2. Identifique épicos e stories
       3. Crie specs/product/SCOPE_LATEST.md
       4. Crie specs/product/VISION_LATEST.md
-      
+
       Output: Documentos de escopo e visão
 
   # 2. Plan - Create release plan
@@ -28,13 +28,13 @@ nodes:
     depends_on: [discover]
     prompt: |
       Crie o plano de release.
-      
+
       Baseado na descoberta anterior:
       1. Identifique épicos prioritários
       2. Ordene por WSJF (Weighted Shortest Job First)
       3. Crie specs/release-plan.yaml
       4. Defina milestones (fase-0 a fase-4)
-      
+
       Formato do release-plan.yaml:
       ```yaml
       epics:
@@ -46,7 +46,7 @@ nodes:
               title: Estrutura base
               status: pending
           ```
-      
+
       Output: release-plan.yaml
 
   # 3. Slice - Break into stories
@@ -54,7 +54,7 @@ nodes:
     depends_on: [plan]
     prompt: |
       Crie as stories detalhadas.
-      
+
       Para cada épico:
       1. Leia o plano de release
       2. Crie diretório specs/epics/eXXX-slug/
@@ -65,7 +65,7 @@ nodes:
          - Comando verify:
          - Dependências
          - Tags
-      
+
       Output: Stories criadas em specs/epics/
 
   # 4. Execute - Build stories with TDD
@@ -74,21 +74,21 @@ nodes:
     loop:
       prompt: |
         Execute o ciclo de build do bigpowers.
-        
+
         Leia specs/execution-status.yaml para saber qual story construir.
-        
+
         Para a story atual:
         1. Crie branch (kickoff-branch)
         2. Implemente com TDD (ciclo RED-GREEN-REFACTOR)
         3. Rode verificação (pnpm verify)
         4. Crie PR (release-branch)
-        
+
         Atualize execution-status.yaml após cada story.
-        
+
         Pare quando todas as stories estiverem completas.
-        
+
         Output: "DONE" quando terminar
-      until: "DONE"
+      until: 'DONE'
       max_iterations: 50
       fresh_context: true
 
@@ -97,7 +97,7 @@ nodes:
     depends_on: [execute]
     prompt: |
       Valide o projeto completo.
-      
+
       Verificações:
       1. Todos os testes passam?
       2. Typecheck ok?
@@ -105,11 +105,11 @@ nodes:
       4. Build funciona?
       5. Documentação atualizada?
       6. Todos os PRs merged?
-      
+
       Se houver problemas:
       - Corrija se forem simples
       - Reporte se forem complexos
-      
+
       Output: Relatório de validação
 
   # 6. Release - Prepare for deployment
@@ -117,11 +117,11 @@ nodes:
     depends_on: [verify]
     prompt: |
       Prepare o projeto para release.
-      
+
       Tarefas:
       1. Atualize CHANGELOG.md
       2. Verifique versão no package.json
       3. Crie tag git se necessário
       4. Documente quaisquer pendências
-      
+
       Output: Projeto pronto para deploy

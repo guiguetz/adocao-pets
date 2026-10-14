@@ -1,41 +1,106 @@
-<!-- graft:start -->
-## Graft — repo context graph
+# Adoção de Pets — AI Agents
 
-This repo is indexed in `graft/`: small linked markdown nodes that explain each
-system and carry exact file:line spans, kept in sync with the code through git.
+> **Multi-agent context** — This file is the canonical project context for **Cline**, **Aider**, **OpenCode**, and other AGENTS.md-native tools. Claude Code and Cursor read it via the `CLAUDE.md` symlink.
 
-For ANY task here — understanding how something works, finding where code lives,
-or scoping a change — get context from the graph before grepping or opening
-source files. Re-ask freely (it's cheap) and reuse literal identifiers you
-already have (symbol, error string, file name) as the query. New to this repo?
-Run `graft map` first — a token-budgeted orientation (dir clusters, hubs,
-hotspots), no LLM, no key.
+Read CONVENTIONS.md before any GitHub or git operation.
 
-- Run `graft ask "<your question>" --source` → ranked nodes with the relevant
-  code spans inlined (each hit's ≤8-line crux by default; `--full` for whole
-  definitions when the crux isn't enough). Match the tool to the task shape:
-  for understanding or editing, the top node IS the answer — cite its
-  `covers:` file:line spans and edit straight from `--source`. For
-  exhaustive tasks ("every occurrence / every caller of this pattern"), ranked
-  results are top-N, not complete — run `graft grep "<literal>"` instead
-  (exhaustive over indexed files, grouped by enclosing symbol), falling back
-  to raw `grep -rn` only for unindexed files.
-- `graft skeleton <file>` → every definition's signature + span, ~10× cheaper
-  than reading the file; use it to skim an API surface.
-- `graft callers <symbol>` gives precomputed, exact edges — who calls this.
-  Add `--direction out` for what it calls, or `--depth N` to walk
-  transitively for the full blast radius. For structural questions, skip
-  ranking and use this directly.
-- Or browse: `graft/INDEX.md` lists every node; follow the links.
-- Monorepos and folders of multiple repos rank fairly across sub-projects —
-  hits carry `[scope/]` labels naming which one they're from. Narrow with
-  `graft ask "<task>" --in <scope>/` once you know where you're working.
+<!-- BEGIN bigpowers:context-routing -->
 
-If a returned span is truncated ("+N more lines"), open the file at that exact
-range before finalizing. Only open source files when a node genuinely lacks a
-needed detail, and then at the exact file:line the node points to — never
-re-read whole files.
+## Context Routing
 
-After big code changes, refresh the graph with `graft build` (deterministic,
-no API key, $0).
-<!-- graft:end -->
+Load subdirectory context by file glob — see project-specific routing table (seeded by `seed-conventions`).
+<!-- END bigpowers:context-routing -->
+
+<!-- BEGIN bigpowers:learned-preferences -->
+
+## Learned User Preferences
+
+- (none yet — updated via `session-state`)
+
+## Workspace Facts
+
+- (none yet — durable facts discovered across sessions)
+
+<!-- END bigpowers:learned-preferences -->
+
+<!-- BEGIN bigpowers:project -->
+
+## Project
+
+Plataforma open-source de adoção, apadrinhamento e resgate animal.
+Stack: TypeScript / Next.js 16 / React 19 / Prisma 5 / PostgreSQL / Node 22
+
+## Commands
+
+| Action    | Command                            |
+| --------- | ---------------------------------- |
+| Run       | `pnpm dev`                         |
+| Test      | `pnpm test`                        |
+| Build     | `pnpm build`                       |
+| Lint      | `pnpm lint`                        |
+| Preflight | `pnpm verify`                      |
+| CI        | `gh pr checks` (when a PR is open) |
+
+## Test
+
+`pnpm test` — Vitest for unit/integration, Playwright for E2E
+
+## Lint
+
+`pnpm lint` — ESLint 9 flat config
+
+## Build
+
+`pnpm build` — Next.js production build
+
+## Architecture
+
+Next.js App Router with feature-based modules. Prisma ORM for database access. Repository pattern for data access. Testes unitários (Vitest), integração (Vitest com banco real), E2E (Playwright). CI/CD com GitHub Actions.
+
+## Conventions
+
+- Feature-based modules in `src/modules/`
+- Components in PascalCase
+- Hooks in camelCase with `use` prefix
+- Tests in `__tests__/` directories
+- Repositories extend `BaseRepository<T>`
+- All queries go through the repository layer
+
+## Never
+
+- NÃO editar migration manual
+- NÃO usar `any` ou `@ts-ignore`
+- NÃO editar .env.example com valores reais
+- NÃO subir .env ou dados sensíveis
+- NÃO usar `Math.random()` em testes
+- NÃO criar migrations sem schema do Prisma
+- Never dismiss reproducible gate failures as pre-existing or out of scope
+- Never proceed on red Preflight or red CI — invoke quick-fix or fix-bug first
+
+## Agent Rules
+
+- **Workflow Mandate:** Use bigpowers skills (e.g. `plan-work`, `develop-tdd`) for structured work.
+- **Always Green:** Preflight and CI must be green before forward work.
+- Read specs/ and CONVENTIONS.md before writing code.
+- Write the minimum code that solves the stated problem.
+- Run tests after every change. Show evidence before declaring done.
+- All planning output goes in specs/.
+
+## Defensive Code
+
+All 5 categories apply:
+
+- Rate limit
+- Retry
+- Circuit breaker
+- Timeout
+- Graceful degradation
+
+## Token Economy — Minimal Footprint
+
+1. **Check existing dependencies first.** DO inspect what your current dependencies already do before adding a package or writing your own code.
+2. **Prefer mature, maintained libraries.** DO NOT rewrite a capability a maintained library provides without a documented reason.
+3. **Copy validated patterns.** DO study how established products solve the same problem before inventing a new approach.
+4. **Keep the simplest working implementation.** DO write the least code that satisfies the stated requirement. NEVER add preventive abstraction or unused config layers.
+
+<!-- END bigpowers:project -->

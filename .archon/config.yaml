@@ -2,29 +2,24 @@
 # Project: adocao-pets
 # Stack: Next.js, TypeScript, Tailwind, PostgreSQL, Prisma, Auth.js
 
-# Default provider
-defaultProvider: pi
+# Default assistant
+defaultAssistant: pi
 
 # Assistant configuration
 assistants:
   pi:
-    # Model for this project
-    model: anthropic/claude-sonnet-4-20250514
-    
+    # Default model (medium tier = mimo v2.5 pro)
+    # small tasks use deepseek v4 flash 0731
+    model: openrouter/xiaomi/mimo-v2.5-pro
+
     # Extensions enabled (bigpowers, pi-graft, etc)
     enableExtensions: true
-    
-    # Environment variables
-    env:
-      # Add project-specific env vars here
-      # DATABASE_URL: "postgresql://..."
-      # NEXTAUTH_SECRET: "..."
 
 # Workflow defaults
 workflows:
   # Directory for workflows
   dir: .archon/workflows
-  
+
   # Default timeout (30 minutes)
   timeout: 1800
 
@@ -33,9 +28,9 @@ project:
   name: adocao-pets
   description: App de adoção de pets
   repository: github.com/guilherme/adocao-pets
-  
+
   # Branch naming convention
-  branchPrefix: "<type>/<issue-number>-<slug>"
-  
+  branchPrefix: '<type>/<issue-number>-<slug>'
+
   # Commit convention
   commitConvention: conventional-commits

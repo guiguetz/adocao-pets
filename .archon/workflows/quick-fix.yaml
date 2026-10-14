@@ -9,20 +9,20 @@ nodes:
   - id: fix
     prompt: |
       Corrija o bug reportado.
-      
+
       Entrada: $ARGUMENTS
-      
+
       Passos:
       1. Leia a descrição do bug
       2. Encontre o código problemático
       3. Implemente a correção
       4. Adicione teste de regressão
-      
+
       Regras:
       - Mantenha a correção mínima
       - Não refactorize além do necessário
       - Teste deve falhar antes e passar depois
-      
+
       Output: Bug corrigido
 
   # 2. Verify fix
@@ -30,13 +30,13 @@ nodes:
     depends_on: [fix]
     bash: |
       echo "Verifying fix..."
-      
+
       # Run related tests
       pnpm test:unit || exit 1
-      
+
       # Type check
       pnpm typecheck || exit 1
-      
+
       echo "✅ Fix verified"
 
   # 3. Create PR
@@ -44,10 +44,10 @@ nodes:
     depends_on: [verify]
     prompt: |
       Crie o PR para o fix.
-      
+
       Formato:
       - Título: fix(scope): description
       - Corpo: Descreve o bug e a correção
       - Closes #<issue>
-      
+
       Output: URL do PR

@@ -9,20 +9,20 @@ nodes:
   - id: understand
     prompt: |
       Analise a feature solicitada.
-      
+
       Entrada: $ARGUMENTS
-      
+
       Leia:
       1. docs/product-spec.md - requisitos do produto
       2. specs/product/ - escopo e visão
       3. AGENTS.md - regras do projeto
-      
+
       Extraia:
       - O que a feature faz
       - Por que é necessária
       - Requisitos funcionais
       - Requisitos não-funcionais
-      
+
       Output: Entendimento da feature
 
   # 2. Explore codebase
@@ -30,18 +30,18 @@ nodes:
     depends_on: [understand]
     prompt: |
       Explore o codebase para entender onde implementar.
-      
+
       Busque:
       1. Arquivos relacionados à feature
       2. Padrões existentes similares
       3. Dependências e integrações
       4. Testes existentes relevantes
-      
+
       Use as ferramentas:
       - graft_find_code para buscar conceitos
       - graft_trace_calls para entender fluxos
       - graft_repo_map para visão geral
-      
+
       Output: Mapa do codebase relevante
 
   # 3. Design solution
@@ -49,18 +49,18 @@ nodes:
     depends_on: [explore]
     prompt: |
       Proponha a solução técnica.
-      
+
       Considere:
       1. Arquitetura - onde encaixar?
       2. Padrões - seguir existentes ou criar novo?
       3. Testes - estratégia de cobertura
       4. Migrações - banco de dados necessário?
-      
+
       Decisões:
       - Quais arquivos criar?
       - Quais arquivos modificar?
       - Quais testes escrever?
-      
+
       Output: Proposta de solução
 
   # 4. Break into tasks
@@ -68,17 +68,17 @@ nodes:
     depends_on: [design]
     prompt: |
       Quebre a implementação em tarefas pequenas.
-      
+
       Cada tarefa deve:
       - Ser independente (pode ser feita separadamente)
       - Ter critérios de aceite claros
       - Ter comando de verificação
       - Estimar complexidade (S/M/L)
-      
+
       Formato:
       - [ ] Tarefa 1: descrição (complexidade)
       - [ ] Tarefa 2: descrição (complexidade)
-      
+
       Output: Lista de tarefas
 
   # 5. Create story spec
@@ -86,9 +86,9 @@ nodes:
     depends_on: [tasks]
     prompt: |
       Crie a especificação da story para bigpowers.
-      
+
       Formato: specs/epics/eXX-slug/STORY.md
-      
+
       Inclua:
       1. Título
       2. Descrição
@@ -97,5 +97,5 @@ nodes:
       5. Comando de verificação
       6. Dependências
       7. Tags (story: eXXsXX)
-      
+
       Output: Especificação da story em markdown
