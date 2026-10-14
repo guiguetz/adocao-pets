@@ -13,12 +13,6 @@ assistants:
     
     # Extensions enabled (bigpowers, pi-graft, etc)
     enableExtensions: true
-    
-    # Environment variables
-    env:
-      # Add project-specific env vars here
-      # DATABASE_URL: "postgresql://..."
-      # NEXTAUTH_SECRET: "..."
 
 # Workflow defaults
 workflows:
