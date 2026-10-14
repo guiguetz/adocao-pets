@@ -1,0 +1,27 @@
+name: Project Automation
+
+on:
+  issues:
+    types: [opened, edited, closed, reopened, assigned, unassigned, labeled, unlabeled]
+  pull_request:
+    types: [opened, edited, closed, reopened, ready_for_review, review_requested]
+
+jobs:
+  project:
+    name: Update Project
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues' || github.event_name == 'pull_request'
+    steps:
+      - name: Update project card
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const eventName = context.eventName;
+            const action = context.payload.action;
+
+            // Log the event for debugging
+            console.log(`Event: ${eventName}, Action: ${action}`);
+            console.log('Payload:', JSON.stringify(context.payload, null, 2));
+
+            // TODO: Implement project card automation
+            // This will be implemented when GitHub App is configured
