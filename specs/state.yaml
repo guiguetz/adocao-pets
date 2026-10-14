@@ -1,7 +1,12 @@
 # Project state
 workflow_mode: solo-git
-current_epic: null
+current_epic: "e02"
 current_story: null
 handoff:
-  next_skill: null
-  reason: null
+  next_skill: "build-epic"
+  reason: "Epic e01 completo. Próximo: e02-ongs"
+project_cycle:
+  current_phase: 4
+  completed_phases: [1, 2, 3]
+  mode: standard
+  started_at: "2025-01-27"

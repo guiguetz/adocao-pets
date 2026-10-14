@@ -1,0 +1,54 @@
+# Epic 04: Processo de Adoção
+id: "e04"
+title: "Processo de Adoção"
+status: "pending"
+wsjf: 7
+created: "2025-01-27"
+
+goal: "Implementar o fluxo completo de adoção de pets."
+
+stories:
+  - id: "e04s01"
+    title: "Model e migration de Adoption"
+    status: "pending"
+    points: 3
+    priority: "must-have"
+    description: |
+      Criar model Adoption no Prisma com status tracking.
+      Migration para a tabela adoptions.
+    acceptance_criteria:
+      - "Model tem todos os campos necessários"
+      - "Migration aplica sem erros"
+      - "Enum de status definido"
+    verify:
+      - "pnpm prisma migrate dev"
+
+  - id: "e04s02"
+    title: "Formulário de adoção"
+    status: "pending"
+    points: 5
+    priority: "must-have"
+    description: |
+      Formulário /pets/[id]/adopt com dados do adotante.
+      Server Action cria Adoption com status PENDING.
+    acceptance_criteria:
+      - "Formulário renderiza corretamente"
+      - "Validação funciona"
+      - "Cria Adoption no banco"
+    verify:
+      - "Teste E2E: submeter formulário"
+
+  - id: "e04s03"
+    title: "Status tracking da adoção"
+    status: "pending"
+    points: 5
+    priority: "must-have"
+    description: |
+      Página /adoptions/[id] com status da adoção.
+      Histórico de mudanças de status.
+    acceptance_criteria:
+      - "Página mostra status atual"
+      - "Histórico é exibido"
+      - "Status atualiza em tempo real"
+    verify:
+      - "Teste E2E: acompanhar adoção"
