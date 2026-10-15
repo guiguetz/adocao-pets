@@ -25,7 +25,8 @@ describe('BaseRepository', () => {
   describe('constructor', () => {
     it('should create an instance with model name', () => {
       expect(repository).toBeDefined();
-      expect(repository.modelName).toBe('testModel');
+      // Access through any to test protected property
+      expect((repository as any).modelName).toBe('testModel');
     });
   });
 
