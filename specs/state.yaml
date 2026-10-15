@@ -1,12 +1,22 @@
 # Project state
 workflow_mode: solo-git
 current_epic: 'e02'
-current_story: null
+current_story: 'e02s01'
+active_flow: build_epic
 handoff:
-  next_skill: 'build-epic'
-  reason: 'Epic e01 completo. Próximo: e02-ongs'
+  next_skill: 'commit-message'
+  reason: 'Epic e01 completo. Starting e02-ongs with story e02s01 (Repository de ONGs).'
+  last_step_completed: 'audit-code'
+  open_decisions: []
+epic_cycle:
+  current_step: 7
+  completed_steps: [0, 1, 2, 3, 4, 5, 6]
+  story_bcps: 3
 project_cycle:
   current_phase: 4
   completed_phases: [1, 2, 3]
   mode: standard
   started_at: '2025-01-27'
+git:
+  branch: feat/e02s01-repository
+  hash: 185c047

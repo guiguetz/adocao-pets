@@ -17,7 +17,7 @@ epics:
   e02:
     status: 'pending'
     stories:
-      e02s01: 'pending'
+      e02s01: 'done'
       e02s02: 'pending'
       e02s03: 'pending'
 
