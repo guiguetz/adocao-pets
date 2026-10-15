@@ -10,7 +10,7 @@ handoff:
   last_step_completed: 'release-branch'
   open_decisions: []
 epic_cycle:
-  current_step: 3
+  current_step: 8
   completed_steps: []
   story_bcps: null
 project_cycle:
@@ -19,5 +19,5 @@ project_cycle:
   mode: standard
   started_at: '2025-01-27'
 git:
-  branch: main
-  hash: 0dd6749
+  branch: feat/e02s02-api-routes
+  hash: 49511e0
