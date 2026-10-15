@@ -1,15 +1,16 @@
 # Project state
 workflow_mode: solo-git
 current_epic: 'e02'
+active_story_id: 'e02s02'
 current_story: null
-active_flow: null
+active_flow: build_epic
 handoff:
   next_skill: 'build-epic'
   reason: 'Epic e02s01 complete. Next: e02s02 (API routes de ONGs).'
   last_step_completed: 'release-branch'
   open_decisions: []
 epic_cycle:
-  current_step: null
+  current_step: 3
   completed_steps: []
   story_bcps: null
 project_cycle:
