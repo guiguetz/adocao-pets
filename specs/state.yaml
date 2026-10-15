@@ -4,13 +4,13 @@ current_epic: 'e02'
 current_story: 'e02s01'
 active_flow: build_epic
 handoff:
-  next_skill: 'commit-message'
+  next_skill: 'release-branch'
   reason: 'Epic e01 completo. Starting e02-ongs with story e02s01 (Repository de ONGs).'
-  last_step_completed: 'audit-code'
+  last_step_completed: 'commit-message'
   open_decisions: []
 epic_cycle:
-  current_step: 7
-  completed_steps: [0, 1, 2, 3, 4, 5, 6]
+  current_step: 8
+  completed_steps: [0, 1, 2, 3, 4, 5, 6, 7]
   story_bcps: 3
 project_cycle:
   current_phase: 4
@@ -19,4 +19,4 @@ project_cycle:
   started_at: '2025-01-27'
 git:
   branch: feat/e02s01-repository
-  hash: 185c047
+  hash: 0dd6749
