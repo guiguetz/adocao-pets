@@ -46,6 +46,18 @@ const eslintConfig = [
       'no-restricted-imports': 'off',
     },
   },
+  {
+    files: ['**/*.test.ts', '**/*.test.tsx', '**/*.spec.ts', '**/*.spec.tsx'],
+    rules: {
+      'max-lines-per-function': 'off',
+    },
+  },
+  {
+    files: ['src/modules/shared/types/**/*.ts'],
+    rules: {
+      'no-restricted-imports': 'off',
+    },
+  },
 ];
 
 export default eslintConfig;
