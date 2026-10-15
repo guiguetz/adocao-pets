@@ -1,12 +1,23 @@
 # Project state
 workflow_mode: solo-git
 current_epic: 'e02'
+active_story_id: 'e02s02'
 current_story: null
+active_flow: build_epic
 handoff:
   next_skill: 'build-epic'
-  reason: 'Epic e01 completo. Próximo: e02-ongs'
+  reason: 'e02s02 complete (PR #21). Next: e02s03 (Página de cadastro de ONG).'
+  last_step_completed: 'release-branch'
+  open_decisions: []
+epic_cycle:
+  current_step: null
+  completed_steps: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+  story_bcps: null
 project_cycle:
   current_phase: 4
   completed_phases: [1, 2, 3]
   mode: standard
   started_at: '2025-01-27'
+git:
+  branch: feat/23-api-routes
+  hash: 184e0da

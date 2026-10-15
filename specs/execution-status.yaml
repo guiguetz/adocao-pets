@@ -15,10 +15,10 @@ epics:
       e01s04: 'pending'
 
   e02:
-    status: 'pending'
+    status: 'in-progress'
     stories:
-      e02s01: 'pending'
-      e02s02: 'pending'
+      e02s01: 'done'
+      e02s02: 'done'
       e02s03: 'pending'
 
   e03:
