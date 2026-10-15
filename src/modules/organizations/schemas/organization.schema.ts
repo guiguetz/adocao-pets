@@ -9,7 +9,7 @@ export const createOrganizationSchema = z
       .regex(/^[a-z0-9-]+$/, 'Slug must contain only lowercase letters, numbers, and hyphens'),
     description: z.string().optional(),
     phone: z.string().optional(),
-    email: z.string().email('Invalid email format').optional(),
+    email: z.email('Invalid email format').optional(),
   })
   .strict();
 
@@ -23,6 +23,6 @@ export const updateOrganizationSchema = z
       .optional(),
     description: z.string().optional(),
     phone: z.string().optional(),
-    email: z.string().email('Invalid email format').optional(),
+    email: z.email('Invalid email format').optional(),
   })
   .strict();
