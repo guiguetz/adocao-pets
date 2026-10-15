@@ -41,6 +41,7 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm prisma generate
       - run: pnpm test:unit
         env:
           AUTH_TEST_MODE: 'true'
